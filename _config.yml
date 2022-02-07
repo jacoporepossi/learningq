@@ -35,6 +35,9 @@ socials:
   twitter: JacopoRepossi
   github:  jacoporepossi
   linkedin: jacopo-repossi
+ 
+# Google analytics
+google_analytics: [G-H8LW883SED]
 
 # Build settings
 # theme: jekyll-theme-yat
