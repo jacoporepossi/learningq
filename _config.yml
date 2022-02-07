@@ -18,20 +18,33 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Jacopo Repossi
-email: your-email@example.com
+title: Learning Queue
+email: jacopo.repossi@gmail.com
+author: Jacopo Repossi
 description: >- # this means to ignore newlines until "baseurl:"
   Personal space to collect projects and codes while continuing learning Data Science
 baseurl: "/learningq" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: JacopoRepossi
-github_username:  jacoporepossi
+
+yat:
+  date_format: "%b %d, %Y"
+
+copyright: "(cleft) 2021-{currentYear} {author}"
+
+socials:
+  twitter: JacopoRepossi
+  github:  jacoporepossi
+  linkedin: jacopo-repossi
 
 # Build settings
 # theme: jekyll-theme-yat
 remote_theme: "jeffreytse/jekyll-theme-yat"
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-spaceship
 
 # Exclude from processing.
 # The following items will not be processed, by default.

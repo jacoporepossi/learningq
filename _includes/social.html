@@ -1,0 +1,17 @@
+<div id="socialMedia">
+{% if site.email %}
+    <a href="mailto:{{ site.email }}" title="Email"><i class="fa fa-envelope-square" style="font-size:24px"></i></a>
+{% endif %}
+{% if site.socials.facebook %}
+    <a href="https://www.facebook.com/{{ site.socials.facebook }}" title="Facebook"><i class="fa fa-facebook-square" style="font-size:24px" ></i></a>
+{% endif %}
+{% if site.socials.twitter %}
+    <a href="https://www.twitter.com/{{ site.socials.twitter }}" title="Twitter"><i class="fa fa-twitter-square" style="font-size:24px"></i></a>
+{% endif %}
+{% if site.socials.linkedin %}
+    <a href="https://www.linkedin.com/in/{{ site.socials.linkedin }}" title="Linkedin"><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>
+{% endif %}
+{% if site.socials.github %}
+    <a href="https://www.github.com/{{ site.socials.github }}" title="Github"><i class="fa fa-github-square" style="font-size:24px"></i></a>
+{% endif %}
+</div>
