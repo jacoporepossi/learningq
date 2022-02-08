@@ -69,6 +69,10 @@ sidebar:
       {%- include extensions/comments/gitment.html -%}
       {%- endif -%}
 
+      {%- if site.giscus.repo -%}
+      {%- include extensions/comments/giscus.html -%}
+      {%- endif -%}
+
       {%- endif -%}
     </div>
     {%- endif -%}

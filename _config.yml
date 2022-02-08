@@ -68,3 +68,12 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+giscus:
+  repo:                "jacoporepossi/learningq"
+  repo-id:             "R_kgDOGy_CXg"
+  category:            "Announcements"
+  category-id:         "DIC_kwDOGy_CXs4CBEft"
+  mapping:             "pathname"
+  reaction-enabled:    "1"
+  theme:               "dark"
