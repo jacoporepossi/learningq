@@ -16,13 +16,13 @@ This notebook was published on [Kaggle](https://www.kaggle.com/jacoporepossi/tut
 
 When searching for parameters and estimating the error of a model, one could be tempted to use only one Cross Validation loop.
 
-<img src="https://www.researchgate.net/profile/Johar-Ashfaque/publication/332370436/figure/fig1/AS:746775958806528@1555056671117/Diagram-of-k-fold-cross-validation-with-k-10-Image-from-Karl-Rosaen-Log.ppm" width=500 height=300 />
+<img src="https://www.researchgate.net/profile/Johar-Ashfaque/publication/332370436/figure/fig1/AS:746775958806528@1555056671117/Diagram-of-k-fold-cross-validation-with-k-10-Image-from-Karl-Rosaen-Log.ppm" width=450 height=300 />
 
 In the image above, we see an example of a generic **K-fold** cross validation. This procedure can be used both when **optimizing the hyperparameters of a model and when comparing and selecting a model for the dataset**. When the same cross-validation procedure and dataset are used to **both tune and select a model**, it is likely to lead to a **biased evaluation** of the model performance.
 
 One way to avoid this is to **set aside** a piece of data, aka the **test set**.
 
-<img src="https://scikit-learn.org/stable/_images/grid_search_cross_validation.png" width=500 height=300 />
+<img src="https://scikit-learn.org/stable/_images/grid_search_cross_validation.png" width=450 height=300 />
 
 In this approach:
 - The dataset is divided in training, validation and test set
@@ -34,7 +34,7 @@ What about **Nested Cross Validation then**?
 
 To generalize better, we simply **rotate the test set on the entire dataset**. By doing so, we are sure to have a **better overview** of the performance of our model on the totality of the data.
 
-<img src="https://privefl.github.io/R-presentation/nested-crossval.png" width=500 height=500 />
+<img src="https://privefl.github.io/R-presentation/nested-crossval.png" width=450 height=400 />
 
 **Let's see it in action!**
 
