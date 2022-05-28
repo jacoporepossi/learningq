@@ -1,0 +1,275 @@
+---
+layout: post
+title: "Object-oriented programming in Python: Classes - Part 1"
+date: 2022-05-28 11:06:00 +0100
+categories: ['Python Programming']
+tags: ['Python classes']
+---
+
+## Introduction
+Python is an object-oriented programming language and therefore the emphasis is on objects. But what is an object?
+
+An object is a fundamental building block: integers, strings, floats, dictionaries, are all objects and a class is a blueprint for that object.
+
+Think of a class as a sketch of a human body. We generally draw details of the shapes such as legs, arms, face etc and based on these characteristics we build the final drawing of a human bodyù. We can create many versions starting from the same initial sketch: every version of a human body is called an instance of a class and the process of creating this object is called instantiation.
+
+## Aim of this notebook
+
+In this first part we will explore the basics of classes in Python, with emphasis on the difference between class and instance variables, when to use them and how.
+
+## Classes and instances
+
+First of all, let's see the syntax to create a class in python.
+
+
+```python
+# Define a Pet class
+class Pet():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    # Create a class method that prints the Id of our Pet
+    def get_id(self):
+        print('My name is {} and I am {} yrs old'.format(self.name, self.age))
+
+# my_pet is an instance of the Pet class
+my_pet = Pet('Bob', 3)
+my_pet.get_id()
+```
+
+    My name is Bob and I am 1 yrs old
+    
+
+Let's now define some aspects of terminology when looking at the Pet class.
+
+`my_pet` is an instance of the Pet class, with `name` and `age` referred as **instance variables**. [Instance variables](https://docs.python.org/3/tutorial/classes.html#instance-objects) are variables that are owned by instances of the class.
+
+`__init__` or `get_id` are referred to as methods of the Pet class. In the example, the `__init__` method is called as soon as we create a new instance of the Pet class.\
+Methods receive the instance as first argument automatically, each time we create methods within a class. By convention, the way to call the instance is with `self`.
+In `get_id` we see that `self` is used to retrieve the instance variables `name` and `age`.
+
+Another way to visualize `self` is by doing the following:
+
+
+```python
+# my_pet.get_id() is the same as:
+Pet.get_id(my_pet)
+```
+
+    My name is Bob and I am 1 yrs old
+    
+
+As we can see, the above line of code behaves the same as calling `my_pet.get_id()`. The only difference is that we are using the class `Pet`, calling the `get_id` method and passing the istance `my_pet`.
+
+Let's now prove that `name` and `age` are indeed instance variables:
+
+
+```python
+my_second_pet = Pet('Fido', 1)
+my_second_pet.get_id()
+
+# my_pet still has its own name and age
+my_pet.get_id()
+```
+
+    My name is Fido and I am 3 yrs old
+    My name is Bob and I am 1 yrs old
+    
+
+As we can see, `name` and `age` are owned by each specific instance!
+
+## Class variables
+
+Class variables are defined within the class construction and because they are owned by the class itself, **they are shared by all instances** of the class.
+
+
+```python
+class Pet():
+    # Define a class variable that defines in which city my pets live
+    city_address = 'Milan'
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def get_id(self):
+        # I can access the class variable city_address either using Pet.city_address or with self.city_address
+        print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))
+
+# Let's create two instances of the Pet class
+my_first_pet = Pet('Bob', 3)
+my_second_pet = Pet('Fido', 1)
+
+print(my_first_pet.city_address)
+print(my_second_pet.city_address)
+
+my_first_pet.get_id()
+my_second_pet.get_id()
+```
+
+    Milan
+    Milan
+    My name is Bob and I am 3 yrs old. I live in Milan!
+    My name is Fido and I am 1 yrs old. I live in Milan!
+    
+
+As we can see, since Bob and Fido are my two pets and given that my pets live with me, it makes sense to have a shared class variable.\
+As written in the code comment above, I can access the class attribute `city_address` either using `Pet.city_address` or with `self.city_address`. The latter might sound confusing, since we didn't specify any `self.city_address` in the `__init__` method. What's happening under the hood is that **Python is first checking if instance contains the variable, if it doesn't, it'll check if the class does**.
+
+To better understand this, let's check the instance namespace and the class one
+
+
+```python
+print(my_first_pet.__dict__)
+print(Pet.__dict__)
+```
+
+    {'name': 'Bob', 'age': 3}
+    {'__module__': '__main__', 'city_address': 'Milan', '__init__': <function Pet.__init__ at 0x000001AE49139F70>, 'get_id': <function Pet.get_id at 0x000001AE491393A0>, '__dict__': <attribute '__dict__' of 'Pet' objects>, '__weakref__': <attribute '__weakref__' of 'Pet' objects>, '__doc__': None}
+    
+
+As we can see, the instance `my_first_pet` doesn't have the `city_address` attribute, whereas the class does (together with other stuff we don't care about now).
+
+Let's suppose now I change city where I live, moving to Rome.
+
+
+```python
+Pet.city_address = 'Rome'
+
+# All the instances will inherit the new city_address.
+print(my_first_pet.city_address)
+print(my_second_pet.city_address)
+
+my_first_pet.get_id()
+my_second_pet.get_id()
+```
+
+    Rome
+    Rome
+    My name is Bob and I am 3 yrs old. I live in Rome!
+    My name is Fido and I am 1 yrs old. I live in Rome!
+    
+
+Let's suppose now that Fido stays in Milan with my family, how can we change that?
+That's easy, we simply create the attribute `city_address` **within** the `Fido` instance 
+
+
+```python
+my_second_pet.city_address = 'Milan'
+
+# Only Fido will have Milan
+print(Pet.city_address)
+print(my_first_pet.city_address)
+print(my_second_pet.city_address)
+my_first_pet.get_id()
+my_second_pet.get_id()
+```
+
+    Rome
+    Rome
+    Milan
+    My name is Bob and I am 3 yrs old. I live in Rome!
+    My name is Fido and I am 1 yrs old. I live in Milan!
+    
+
+
+```python
+# This can be seen in 
+print(my_first_pet.__dict__)
+print(my_second_pet.__dict__)
+print(Pet.__dict__)
+```
+
+    {'name': 'Bob', 'age': 3}
+    {'name': 'Fido', 'age': 1, 'city_address': 'Milan'}
+    {'__module__': '__main__', 'city_address': 'Rome', '__init__': <function Pet.__init__ at 0x000001AE49139F70>, 'get_id': <function Pet.get_id at 0x000001AE491393A0>, '__dict__': <attribute '__dict__' of 'Pet' objects>, '__weakref__': <attribute '__weakref__' of 'Pet' objects>, '__doc__': None}
+    
+
+All the above is happening because the we defined the get_id method using `self.city_address`
+> `print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))`
+
+Should it be always like that? What about `Pet.city_address`?\
+As we saw, it is convenient to have the flexibility of being able to change the city in which the Pet lives, so it makes sense to leave `self` in the method.
+
+Let's see what would happen if we changed to `Pet.city_address`
+
+
+```python
+class Pet():
+    # Define a class variable that defines in which city my pets live
+    city_address = 'Milan'
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def get_id(self):
+        print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, Pet.city_address))
+        
+my_first_pet = Pet('Bob', 3)
+my_second_pet = Pet('Fido', 1)
+
+my_first_pet.get_id()
+my_second_pet.get_id()
+
+Pet.city_address = 'Rome'
+print('\nAFTER MOVING TO ROME')
+
+my_first_pet.get_id()
+my_second_pet.get_id()
+
+print('\nTRYING TO CHANGE CITY TO FIDO, NOT WORKING!')
+my_second_pet.city_address = 'Milan'
+my_first_pet.get_id()
+my_second_pet.get_id()
+```
+
+    My name is Bob and I am 3 yrs old. I live in Milan!
+    My name is Fido and I am 1 yrs old. I live in Milan!
+    
+    AFTER MOVING TO ROME
+    My name is Bob and I am 3 yrs old. I live in Rome!
+    My name is Fido and I am 1 yrs old. I live in Rome!
+    
+    TRYING TO CHANGE CITY TO FIDO, NOT WORKING!
+    My name is Bob and I am 3 yrs old. I live in Rome!
+    My name is Fido and I am 1 yrs old. I live in Rome!
+    
+
+Since get_id works with `Pet.city_address`, creating the attribute `city_address = 'Milan'` within the instance `my_second_pet` doesn't affect the result, since we are still accessing the class variable!
+
+When would it make sense to use a class variable then?\
+Why not counting the number of pets I own each time I create a new instance of the Pet class?
+
+
+```python
+class Pet():
+    city_address = 'Milan'
+    n_pets = 0
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Pet.n_pets += 1
+    
+    def get_id(self):
+        print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))
+        
+print('I own {} pets'.format(Pet.n_pets))
+my_first_pet = Pet('Bob', 3)
+my_second_pet = Pet('Fido', 1)
+
+print('I now own {} pets'.format(Pet.n_pets))
+```
+
+    I own 0 pets
+    I now own 2 pets
+    
+
+Compared to `self.city_address`, now it's very unlikely that we are going to change the number of pets using an instance of the Pet class!
+
+## Conclusion
+In this notebook we learned how to create a simple class and the difference between instance variables and class ones.
+
+In another notebook I'll explore static methods and class methods in details.
