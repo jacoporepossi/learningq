@@ -23,7 +23,7 @@ email: jacopo.repossi@gmail.com
 author: Jacopo Repossi
 description: >- # this means to ignore newlines until "baseurl:"
   Personal space to collect projects and codes while continuing learning Data Science
-baseurl: "/learningq" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jacoporepossi.github.io/learningq" # the base hostname & protocol for your site, e.g. http://example.com
 
 yat:
