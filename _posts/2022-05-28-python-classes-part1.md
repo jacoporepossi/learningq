@@ -272,4 +272,4 @@ Compared to `self.city_address`, now it's very unlikely that we are going to cha
 ## Conclusion
 In this notebook we learned how to create a simple class and the difference between instance variables and class ones.
 
-In another notebook I'll explore static methods and class methods in details.
+In [Part 2](https://jacoporepossi.github.io/learningq/python%20programming/2022/06/07/python-classes-part2.html), I'll explore static methods and class methods in details.

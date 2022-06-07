@@ -294,6 +294,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.12)
+  jekyll-sitemap
   jekyll-theme-yat
   minima (~> 2.5)
   tzinfo (~> 1.2)
