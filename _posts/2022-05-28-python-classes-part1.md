@@ -7,15 +7,15 @@ tags: ['Python classes']
 ---
 
 ## Introduction
-Python is an object-oriented programming language and therefore the emphasis is on objects. But what is an object?
+Python is an **object-oriented programming language** and therefore the emphasis is on objects. But what is an object?
 
-An object is a fundamental building block: integers, strings, floats, dictionaries, are all objects and a class is a blueprint for that object.
+An object is a **fundamental building block**: integers, strings, floats, dictionaries, are all objects and a class is a blueprint for that object.
 
-Think of a class as a sketch of a human body. We generally draw details of the shapes such as legs, arms, face etc and based on these characteristics we build the final drawing of a human bodyù. We can create many versions starting from the same initial sketch: every version of a human body is called an instance of a class and the process of creating this object is called instantiation.
+Think of a class as a sketch of a human body. We generally draw details of the shapes such as legs, arms, face etc and based on these characteristics we build the final drawing of a human body. We can create many versions starting from the same initial sketch: every version of a human body is called an instance of a class and the process of creating this object is called instantiation.
 
 ## Aim of this notebook
 
-In this first part we will explore the basics of classes in Python, with emphasis on the difference between class and instance variables, when to use them and how.
+In this first part we will explore the basics of classes in Python, with emphasis on the difference between **class and instance variables**, when to use them and how.
 
 ## Classes and instances
 
@@ -43,10 +43,10 @@ my_pet.get_id()
 
 Let's now define some aspects of terminology when looking at the Pet class.
 
-`my_pet` is an instance of the Pet class, with `name` and `age` referred as **instance variables**. [Instance variables](https://docs.python.org/3/tutorial/classes.html#instance-objects) are variables that are owned by instances of the class.
+`my_pet` is an **instance** of the Pet class, with `name` and `age` referred as **instance variables**. [Instance variables](https://docs.python.org/3/tutorial/classes.html#instance-objects) are variables that are owned by instances of the class.
 
-`__init__` or `get_id` are referred to as methods of the Pet class. In the example, the `__init__` method is called as soon as we create a new instance of the Pet class.\
-Methods receive the instance as first argument automatically, each time we create methods within a class. By convention, the way to call the instance is with `self`.
+`__init__` or `get_id` are referred to as **methods** of the Pet class. In the example, the `__init__` method is called as soon as we create a new instance of the Pet class.\
+Methods receive the **instance as first argument automatically**, each time we create methods within a class. By convention, the way to call the instance is with `self`.
 In `get_id` we see that `self` is used to retrieve the instance variables `name` and `age`.
 
 Another way to visualize `self` is by doing the following:
