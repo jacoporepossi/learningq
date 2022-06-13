@@ -8,7 +8,7 @@ tags: ['Tableau', 'Citizen Data Scientists']
 
 ## Introduction
 
-I recently took part in the Kaggle's annual Machine Learning and Data Science [Survey competition](https://www.kaggle.com/c/kaggle-survey-2021/overview) together with a colleague of mine, [Alessia Musio](https://alessiamusio.com/).
+I recently took part in the [Kaggle's annual](https://www.kaggle.com/c/kaggle-survey-2021/overview) Machine Learning and Data Science Survey competition together with a colleague of mine, [Alessia Musio](https://alessiamusio.com/).
 
 The Survey, as stated in the Kaggle page, presents a comprehensive view of the state of data science and machine learning and was live from 09/01/2021 to 10/04/2021. After cleaning the data, they finished with 25.973 responses!
 
