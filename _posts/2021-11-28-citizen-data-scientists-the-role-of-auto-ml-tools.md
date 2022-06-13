@@ -110,7 +110,11 @@ For the more curious cats, we have created a chapter specifically to explain the
 # <span class="title-section w3-xxlarge">References</span>
 
 <span id="f1">1.</span> [What is automated machine learning (AutoML)?](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/machine-learning/concept-automated-ml.md)<br>
+<br>
 <span id="f2">2.</span> [Machine Learning in Python: Main developments and technology trends in data science, machine learning, and artificial intelligence](https://arxiv.org/pdf/2002.04803.pdf)<br>
+<br>
 <span id="f3">3.</span> [Rethinking AI talent strategy as automated machine learning comes of age](https://www.mckinsey.com/business-functions/mckinsey-analytics/our-insights/rethinking-ai-talent-strategy-as-automated-machine-learning-comes-of-age)<br>
+<br>
 <span id="f4">4.</span> [Taking the Human out of Learning Applications: A Survey on Automated Machine Learning](https://arxiv.org/pdf/1810.13306.pdf)<br>
+<br>
 <span id="f5">5.</span> [AutoML 2.0: Is The Data Scientist Obsolete?](https://www.forbes.com/sites/cognitiveworld/2020/04/07/automl-20-is-the-data-scientist-obsolete/?sh=2e5661ef53c9)<br>
