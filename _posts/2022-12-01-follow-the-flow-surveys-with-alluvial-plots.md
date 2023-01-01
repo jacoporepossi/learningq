@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Follow the flow: surveys with Alluvial plots"
+date:   2022-12-01 22:00:00 +0100
+categories: ['Kaggle', 'Competitions', 'Data Visualization', 'Data Science']
+tags: ['Plotly', 'Sankey', 'Alluvial']
+---
+
+<img src="{{ site.baseurl }}/assets/images/nbs/alluvial/alluvial_preview.png">
+
+As per [last year](https://jacoporepossi.github.io/learningq/kaggle/competitions/data%20visualization/data%20science/2021/11/28/citizen-data-scientists-the-role-of-auto-ml-tools.html), I took part to the [Kaggle's annual](https://www.kaggle.com/competitions/kaggle-survey-2022) Machine Learning and Data Science Survey competition.
+
+Although the goal of the analysis was the same, this time I decided to adopt a different approach, using only one chart type: Alluvial diagrams.
+
+The work was complex but rewarding, as it was a great opportunity to deepen my understanding of this type of visualization and the Plotly library. I was also humbled to have received [Honorable Mention](https://www.kaggle.com/competitions/kaggle-survey-2022/discussion/372587) for my work!
+
+[Here is the link](https://www.kaggle.com/code/jacoporepossi/follow-the-flow-surveys-with-alluvial-plots/notebook) to the Kaggle notebook. If you're interested in learning more about my project, feel free to reach out!
