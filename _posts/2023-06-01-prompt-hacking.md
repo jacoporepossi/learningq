@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Prompt Hacking: how to trick Large Language Models like ChatGPT"
-date:   2023-06-01 13:00:00 +0100
+date:   2023-06-18 13:00:00 +0100
 categories: ['Aicrowd', 'Competitions', 'Data Science']
 tags: ['LLM', 'Prompt Engineering', 'Prompt Hacking', 'ChatGPT']
 ---
@@ -44,7 +44,7 @@ The [Bing example](https://twitter.com/Claybight/status/1623611367591907328) is 
 
 Therefore, alongside advances in model performance, it is important to acknowledge and address the potential dangers associated with prompt hacking. Responsible use, ethical considerations, and robust safeguards are crucial to mitigate risks and ensure that language models are deployed in a manner that promotes fairness, accuracy, and respect for user privacy and societal values.
 
-This was precisely the aim of the [Aicrowd's HackAPromt](https://www.aicrowd.com/challenges/hackaprompt-2023) competition, in which I partecipated with my colleague [Riccado Motta](https://www.linkedin.com/in/motric/), securing the <b>32nd place out of 476 teams.</b>
+This was precisely the aim of the [Aicrowd's HackAPrompt](https://www.aicrowd.com/challenges/hackaprompt-2023) competition, in which I partecipated with my colleague [Riccado Motta](https://www.linkedin.com/in/motric/), securing the <b>32nd place out of 476 teams.</b>
 
 In this post, I will share the solutions we devised, while also explaining what prompt hacking is and why it matters.
 
