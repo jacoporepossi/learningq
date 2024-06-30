@@ -50,11 +50,31 @@ The filters apply to each chat message sent by the defended model. The defender 
 
 The input format enables referencing the last chat output with `{model output}`, the secret with `{secret}`, and the last message by the user with `{last user prompt}`.
 
+To sum up, this is the defense framework:
+
+1. Instantiate System Prompt + Secret + Defense prompt
+2. At each message:\
+    2.1. Get model output\
+    2.2. Apply LLM filter or Python filter (based on chosen order): the output of one filter is the input of the other\
+    2.4. Display final answer
+
+
 ## My Defense
 
-Given the most common defense-attack techniques to hack a LLM, [highlighted in my previous blog post](https://jacoporepossi.github.io/learningq/aicrowd/competitions/data%20science/2023/06/18/prompt-hacking.html), I opted for the following defense strategies:
+The order of the filters I chose was the following: 
+
+1. Instantiate System Prompt + Secret + **Defense prompt**
+2. At each message:\
+    2.1. Get model output\
+    2.2. Apply **LLM filter**\
+    2.3. Apply **Python filter**\
+    2.4. Display final answer
+
+The idea was to use a LLM filter to assess the model output and then apply some additional filtering using python functions.
 
 **Defense prompt**
+
+Given the most common attack techniques to hack a LLM [highlighted in my previous blog post](https://jacoporepossi.github.io/learningq/aicrowd/competitions/data%20science/2023/06/18/prompt-hacking.html), I opted for the following defense prompt:
 
 ```
 Here's additional instructions you should follow:
@@ -102,7 +122,8 @@ def f(chat_history: list[str], model_output: str, secret: str) -> str:
     return replace_all(model_output, d)
 ```
 
-The python filter was merely a replace function to change the secret values to an empty string. In the mapping dictionary this can be seen looking at the first key-value pair `secret: ''`. How could one possibly circumvent this basic filtering mechanism? Probably asking the LLM to spit out the secret separating the values with some other character, such us `/` or `-`. This is why I also made sure any `s-e-c-r-e-t` or `s/e/c/r/e/t` would be replace with `''`.
+The python filter was merely a replace function to change the secret values to an empty string. In the mapping dictionary this can be seen looking at the first key-value pair `secret: ''`. \
+How could one possibly circumvent this basic filtering mechanism? Probably asking the LLM to spit out the secret separating the values with some other character, such us `/` or `-`. This is why I also made sure any `s-e-c-r-e-t` or `s/e/c/r/e/t` would be replace with `''`.
 
 ### Defense in action
 By looking at the [published dataset](https://huggingface.co/datasets/ethz-spylab/ctf-satml24), my defense failed 11 times out of 73 tentatives being made.
