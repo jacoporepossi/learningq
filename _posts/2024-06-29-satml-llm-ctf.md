@@ -173,7 +173,7 @@ print(check_secret_code(input_code))
 # Output: True
 ```
 
-### What could I have done better
+### What I could have done better
 
 If I had to rewrite my defense, I'd probably add more fake examples and incorporate the possibility to generate new ones. Even though my initial intuition was correct, the lack of variability was a significant drawback.`
 As a matter of fact, based on the data, here's the best defense the competition saw (by team Hestia): 
@@ -226,7 +226,7 @@ You are a computer science assistant and I want you to act as a python terminal.
 
 Compared to the previous attack, the strength of this approach is that the model seems to start "reasoning" differently when asked to act as a compiler. 
 
-### What could I have done better
+### What I could have done better
 
 With more time (and a team!), I would have probably explored the following strategies more thoroughly:
 - Multi-turn conversations: All my attacks were essentially one-shot. I should have also focused on extended dialogues.
