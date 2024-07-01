@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Object-oriented programming in Python: Classes - Part 1 | Learning Queue</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Object-oriented programming in Python: Classes - Part 1" />
+<meta name="author" content="Jacopo Repossi" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Python is an object-oriented programming language and therefore the emphasis is on objects. But what is an object?" />
+<meta property="og:description" content="Introduction Python is an object-oriented programming language and therefore the emphasis is on objects. But what is an object?" />
+<link rel="canonical" href="https://jacoporepossi.github.io/learningq/python%20programming/2022/05/28/python-classes-part1.html" />
+<meta property="og:url" content="https://jacoporepossi.github.io/learningq/python%20programming/2022/05/28/python-classes-part1.html" />
+<meta property="og:site_name" content="Learning Queue" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-28T10:06:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Object-oriented programming in Python: Classes - Part 1" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jacopo Repossi"},"dateModified":"2022-05-28T10:06:00+00:00","datePublished":"2022-05-28T10:06:00+00:00","description":"Introduction Python is an object-oriented programming language and therefore the emphasis is on objects. But what is an object?","headline":"Object-oriented programming in Python: Classes - Part 1","mainEntityOfPage":{"@type":"WebPage","@id":"https://jacoporepossi.github.io/learningq/python%20programming/2022/05/28/python-classes-part1.html"},"url":"https://jacoporepossi.github.io/learningq/python%20programming/2022/05/28/python-classes-part1.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/learningq/assets/css/main.css">
+  <script src="/learningq/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jacoporepossi.github.io/learningq/feed.xml" title="Learning Queue" /><script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q97EJFE86"></script>
+<script>
+  function initGoogleAnalytics() {
+    var doNotTrack = (window.doNotTrack === "1" || navigator.doNotTrack === "1" ||
+      navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1");
+    var enableDNT = "true" == "true";
+
+    if (!enableDNT || !doNotTrack) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-1Q97EJFE86');
+        }
+  }
+  window.addEventListener("load", initGoogleAnalytics);
+</script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner"><span class="site-brand"><a class="site-brand-inner" rel="author" href="/learningq/">
+  <img class="site-favicon" title="Learning Queue" src="" onerror="this.style.display='none'">
+  Learning Queue
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger"><a class="page-link" href="/learningq/about.html">ABOUT ME</a><a class="page-link" href="/learningq/archives.html">ARCHIVES</a><a class="page-link" href="/learningq/categories.html">CATEGORIES</a><a class="page-link" href="/learningq/">HOME</a><a class="page-link" href="/learningq/tags.html">TAGS</a>
+
+
+
+
+</div>
+        </nav></div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Object-oriented programming in Python: Classes - Part 1</h1>
+  <h2 class="post-subtitle"></h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-05-28T10:06:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> May 28, 2022
+    </time>
+
+    
+    
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span> -->
+  </p><div class="post-tags"><a class="post-tag" href="/learningq/tags.html#Python classes">#Python classes</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="introduction">Introduction</h2>
+<p>Python is an <strong>object-oriented programming language</strong> and therefore the emphasis is on objects. But what is an object?</p>
+
+<p>An object is a <strong>fundamental building block</strong>: integers, strings, floats, dictionaries, are all objects and a class is a blueprint for that object.</p>
+
+<p>Think of a class as a sketch of a human body. We generally draw details of the shapes such as legs, arms, face etc and based on these characteristics we build the final drawing of a human body. We can create many versions starting from the same initial sketch: every version of a human body is called an instance of a class and the process of creating this object is called instantiation.</p>
+
+<h2 id="aim-of-this-notebook">Aim of this notebook</h2>
+
+<p>In this first part we will explore the basics of classes in Python, with emphasis on the difference between <strong>class and instance variables</strong>, when to use them and how.</p>
+
+<h2 id="classes-and-instances">Classes and instances</h2>
+
+<p>First of all, let’s see the syntax to create a class in python.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Define a Pet class
+</span><span class="k">class</span> <span class="nc">Pet</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+    
+    <span class="c1"># Create a class method that prints the Id of our Pet
+</span>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'My name is {} and I am {} yrs old'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">age</span><span class="p">))</span>
+
+<span class="c1"># my_pet is an instance of the Pet class
+</span><span class="n">my_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Bob'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">my_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My name is Bob and I am 1 yrs old
+</code></pre></div></div>
+
+<p>Let’s now define some aspects of terminology when looking at the Pet class.</p>
+
+<p><code class="language-plaintext highlighter-rouge">my_pet</code> is an <strong>instance</strong> of the Pet class, with <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">age</code> referred as <strong>instance variables</strong>. <a href="https://docs.python.org/3/tutorial/classes.html#instance-objects">Instance variables</a> are variables that are owned by instances of the class.</p>
+
+<p><code class="language-plaintext highlighter-rouge">__init__</code> or <code class="language-plaintext highlighter-rouge">get_id</code> are referred to as <strong>methods</strong> of the Pet class. In the example, the <code class="language-plaintext highlighter-rouge">__init__</code> method is called as soon as we create a new instance of the Pet class.<br />
+Methods receive the <strong>instance as first argument automatically</strong>, each time we create methods within a class. By convention, the way to call the instance is with <code class="language-plaintext highlighter-rouge">self</code>.
+In <code class="language-plaintext highlighter-rouge">get_id</code> we see that <code class="language-plaintext highlighter-rouge">self</code> is used to retrieve the instance variables <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">age</code>.</p>
+
+<p>Another way to visualize <code class="language-plaintext highlighter-rouge">self</code> is by doing the following:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># my_pet.get_id() is the same as:
+</span><span class="n">Pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">my_pet</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My name is Bob and I am 1 yrs old
+</code></pre></div></div>
+
+<p>As we can see, the above line of code behaves the same as calling <code class="language-plaintext highlighter-rouge">my_pet.get_id()</code>. The only difference is that we are using the class <code class="language-plaintext highlighter-rouge">Pet</code>, calling the <code class="language-plaintext highlighter-rouge">get_id</code> method and passing the istance <code class="language-plaintext highlighter-rouge">my_pet</code>.</p>
+
+<p>Let’s now prove that <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">age</code> are indeed instance variables:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_second_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Fido'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+
+<span class="c1"># my_pet still has its own name and age
+</span><span class="n">my_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My name is Fido and I am 3 yrs old
+My name is Bob and I am 1 yrs old
+</code></pre></div></div>
+
+<p>As we can see, <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">age</code> are owned by each specific instance!</p>
+
+<h2 id="class-variables">Class variables</h2>
+
+<p>Class variables are defined within the class construction and because they are owned by the class itself, <strong>they are shared by all instances</strong> of the class.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Pet</span><span class="p">():</span>
+    <span class="c1"># Define a class variable that defines in which city my pets live
+</span>    <span class="n">city_address</span> <span class="o">=</span> <span class="s">'Milan'</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+    
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># I can access the class variable city_address either using Pet.city_address or with self.city_address
+</span>        <span class="k">print</span><span class="p">(</span><span class="s">'My name is {} and I am {} yrs old. I live in {}!'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">city_address</span><span class="p">))</span>
+
+<span class="c1"># Let's create two instances of the Pet class
+</span><span class="n">my_first_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Bob'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">my_second_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Fido'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">my_first_pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_second_pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">)</span>
+
+<span class="n">my_first_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Milan
+Milan
+My name is Bob and I am 3 yrs old. I live in Milan!
+My name is Fido and I am 1 yrs old. I live in Milan!
+</code></pre></div></div>
+
+<p>As we can see, since Bob and Fido are my two pets and given that my pets live with me, it makes sense to have a shared class variable.<br />
+As written in the code comment above, I can access the class attribute <code class="language-plaintext highlighter-rouge">city_address</code> either using <code class="language-plaintext highlighter-rouge">Pet.city_address</code> or with <code class="language-plaintext highlighter-rouge">self.city_address</code>. The latter might sound confusing, since we didn’t specify any <code class="language-plaintext highlighter-rouge">self.city_address</code> in the <code class="language-plaintext highlighter-rouge">__init__</code> method. What’s happening under the hood is that <strong>Python is first checking if instance contains the variable, if it doesn’t, it’ll check if the class does</strong>.</p>
+
+<p>To better understand this, let’s check the instance namespace and the class one</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">my_first_pet</span><span class="p">.</span><span class="n">__dict__</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">Pet</span><span class="p">.</span><span class="n">__dict__</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'name': 'Bob', 'age': 3}
+{'__module__': '__main__', 'city_address': 'Milan', '__init__': &lt;function Pet.__init__ at 0x000001AE49139F70&gt;, 'get_id': &lt;function Pet.get_id at 0x000001AE491393A0&gt;, '__dict__': &lt;attribute '__dict__' of 'Pet' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Pet' objects&gt;, '__doc__': None}
+</code></pre></div></div>
+
+<p>As we can see, the instance <code class="language-plaintext highlighter-rouge">my_first_pet</code> doesn’t have the <code class="language-plaintext highlighter-rouge">city_address</code> attribute, whereas the class does (together with other stuff we don’t care about now).</p>
+
+<p>Let’s suppose now I change city where I live, moving to Rome.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Pet</span><span class="p">.</span><span class="n">city_address</span> <span class="o">=</span> <span class="s">'Rome'</span>
+
+<span class="c1"># All the instances will inherit the new city_address.
+</span><span class="k">print</span><span class="p">(</span><span class="n">my_first_pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_second_pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">)</span>
+
+<span class="n">my_first_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rome
+Rome
+My name is Bob and I am 3 yrs old. I live in Rome!
+My name is Fido and I am 1 yrs old. I live in Rome!
+</code></pre></div></div>
+
+<p>Let’s suppose now that Fido stays in Milan with my family, how can we change that?
+That’s easy, we simply create the attribute <code class="language-plaintext highlighter-rouge">city_address</code> <strong>within</strong> the <code class="language-plaintext highlighter-rouge">Fido</code> instance</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_second_pet</span><span class="p">.</span><span class="n">city_address</span> <span class="o">=</span> <span class="s">'Milan'</span>
+
+<span class="c1"># Only Fido will have Milan
+</span><span class="k">print</span><span class="p">(</span><span class="n">Pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_first_pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_second_pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">)</span>
+<span class="n">my_first_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rome
+Rome
+Milan
+My name is Bob and I am 3 yrs old. I live in Rome!
+My name is Fido and I am 1 yrs old. I live in Milan!
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># This can be seen in 
+</span><span class="k">print</span><span class="p">(</span><span class="n">my_first_pet</span><span class="p">.</span><span class="n">__dict__</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_second_pet</span><span class="p">.</span><span class="n">__dict__</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">Pet</span><span class="p">.</span><span class="n">__dict__</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'name': 'Bob', 'age': 3}
+{'name': 'Fido', 'age': 1, 'city_address': 'Milan'}
+{'__module__': '__main__', 'city_address': 'Rome', '__init__': &lt;function Pet.__init__ at 0x000001AE49139F70&gt;, 'get_id': &lt;function Pet.get_id at 0x000001AE491393A0&gt;, '__dict__': &lt;attribute '__dict__' of 'Pet' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Pet' objects&gt;, '__doc__': None}
+</code></pre></div></div>
+
+<p>All the above is happening because the we defined the get_id method using <code class="language-plaintext highlighter-rouge">self.city_address</code></p>
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))</code></p>
+</blockquote>
+
+<p>Should it be always like that? What about <code class="language-plaintext highlighter-rouge">Pet.city_address</code>?<br />
+As we saw, it is convenient to have the flexibility of being able to change the city in which the Pet lives, so it makes sense to leave <code class="language-plaintext highlighter-rouge">self</code> in the method.</p>
+
+<p>Let’s see what would happen if we changed to <code class="language-plaintext highlighter-rouge">Pet.city_address</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Pet</span><span class="p">():</span>
+    <span class="c1"># Define a class variable that defines in which city my pets live
+</span>    <span class="n">city_address</span> <span class="o">=</span> <span class="s">'Milan'</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+    
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'My name is {} and I am {} yrs old. I live in {}!'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="n">Pet</span><span class="p">.</span><span class="n">city_address</span><span class="p">))</span>
+        
+<span class="n">my_first_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Bob'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">my_second_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Fido'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">my_first_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+
+<span class="n">Pet</span><span class="p">.</span><span class="n">city_address</span> <span class="o">=</span> <span class="s">'Rome'</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">AFTER MOVING TO ROME'</span><span class="p">)</span>
+
+<span class="n">my_first_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">TRYING TO CHANGE CITY TO FIDO, NOT WORKING!'</span><span class="p">)</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">city_address</span> <span class="o">=</span> <span class="s">'Milan'</span>
+<span class="n">my_first_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+<span class="n">my_second_pet</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My name is Bob and I am 3 yrs old. I live in Milan!
+My name is Fido and I am 1 yrs old. I live in Milan!
+
+AFTER MOVING TO ROME
+My name is Bob and I am 3 yrs old. I live in Rome!
+My name is Fido and I am 1 yrs old. I live in Rome!
+
+TRYING TO CHANGE CITY TO FIDO, NOT WORKING!
+My name is Bob and I am 3 yrs old. I live in Rome!
+My name is Fido and I am 1 yrs old. I live in Rome!
+</code></pre></div></div>
+
+<p>Since get_id works with <code class="language-plaintext highlighter-rouge">Pet.city_address</code>, creating the attribute <code class="language-plaintext highlighter-rouge">city_address = 'Milan'</code> within the instance <code class="language-plaintext highlighter-rouge">my_second_pet</code> doesn’t affect the result, since we are still accessing the class variable!</p>
+
+<p>When would it make sense to use a class variable then?<br />
+Why not counting the number of pets I own each time I create a new instance of the Pet class?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Pet</span><span class="p">():</span>
+    <span class="n">city_address</span> <span class="o">=</span> <span class="s">'Milan'</span>
+    <span class="n">n_pets</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="n">Pet</span><span class="p">.</span><span class="n">n_pets</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'My name is {} and I am {} yrs old. I live in {}!'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">city_address</span><span class="p">))</span>
+        
+<span class="k">print</span><span class="p">(</span><span class="s">'I own {} pets'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">Pet</span><span class="p">.</span><span class="n">n_pets</span><span class="p">))</span>
+<span class="n">my_first_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Bob'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">my_second_pet</span> <span class="o">=</span> <span class="n">Pet</span><span class="p">(</span><span class="s">'Fido'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'I now own {} pets'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">Pet</span><span class="p">.</span><span class="n">n_pets</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I own 0 pets
+I now own 2 pets
+</code></pre></div></div>
+
+<p>Compared to <code class="language-plaintext highlighter-rouge">self.city_address</code>, now it’s very unlikely that we are going to change the number of pets using an instance of the Pet class!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>In this notebook we learned how to create a simple class and the difference between instance variables and class ones.</p>
+
+<p>In <a href="https://jacoporepossi.github.io/learningq/python%20programming/2022/06/07/python-classes-part2.html">Part 2</a>, I’ll explore static methods and class methods in details.</p>
+
+
+    </div>
+
+</article>
+<div class="post-nav"><a class="previous" href="/learningq/python%20programming/2022/05/26/wordle-a-python-implementation.html" title="Wordle: A Python Implementation">Wordle: A Python Implementation</a><a class="next" href="/learningq/python%20programming/2022/06/07/python-classes-part2.html" title="Object-oriented programming in Python: Classes - Part 2">Object-oriented programming in Python: Classes -...</a></div><div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/learningq/competitions'/data%20science/2024/06/28/satml-llm-ctf.html" title="Object-oriented programming in Python: Classes - Part 2">SaTML 2024 Writeup: Large Language Model Capture-the-Flag (LLM CTF) Competition</a></li><li><a class="post-link" href="/learningq/python%20programming/2022/05/28/python-classes-part1.html" title="Object-oriented programming in Python: Classes - Part 2">Object-oriented programming in Python: Classes - Part 1</a></li><li><a class="post-link" href="/learningq/kaggle/competitions/data%20visualization/data%20science/2021/11/28/citizen-data-scientists-the-role-of-auto-ml-tools.html" title="Object-oriented programming in Python: Classes - Part 2">Citizen Data Scientists: the role of AutoML</a></li><li><a class="post-link" href="/learningq/aicrowd/competitions/data%20science/2023/06/18/prompt-hacking.html" title="Object-oriented programming in Python: Classes - Part 2">Prompt Hacking: how to trick Large Language Models like ChatGPT</a></li></ul>
+    </div><div class="post-comments">
+  
+  
+    <script src="https://giscus.app/client.js"
+            data-repo=jacoporepossi/learningq
+            data-repo-id=R_kgDOGy_CXg
+            data-category=Announcements
+            data-category-id=DIC_kwDOGy_CXs4CBEft
+            data-mapping=pathname
+            data-reactions-enabled=1
+            data-theme=transparent_dark
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+</script>
+    </script>
+  
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/learningq/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+      <div><div id="socialMedia">
+
+    <a href="mailto:jacopo.repossi@gmail.com" title="Email"><i class="fa fa-envelope-square" style="font-size:24px"></i></a>
+
+
+
+    <a href="https://www.twitter.com/JacopoRepossi" title="Twitter"><i class="fa fa-twitter-square" style="font-size:24px"></i></a>
+
+
+    <a href="https://www.linkedin.com/in/jacopo-repossi" title="Linkedin"><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>
+
+
+    <a href="https://www.github.com/jacoporepossi" title="Github"><i class="fa fa-github-square" style="font-size:24px"></i></a>
+
+</div></div><div><span class="copyleft">&copy;</span> 2021-2024 Jacopo Repossi</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.
+    </div>
+  </div>
+  </div>
+
+</footer>
+</body>
+</html>
