@@ -1,6 +1,4 @@
 /.quarto/
 _site
 .sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+_freeze
