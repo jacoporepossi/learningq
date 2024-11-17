@@ -1,0 +1,52 @@
+project:
+  type: website
+
+format:
+  html:
+    theme: 
+      light: flatly
+      dark: darkly
+    css: styles.css
+    fontsize: 12pt
+
+website:
+  title: "Home"
+  navbar:
+    right:
+      - text: "About me"
+        href: about.qmd
+      - icon: linkedin
+        href: https://www.linkedin.com/in/jacopo-repossi/
+      - icon: github
+        href: https://github.com/jacoporepossi
+      - text: "{{< iconify fa6-brands:kaggle >}}"
+        href: https://www.kaggle.com/jacoporepossi
+
+  page-footer:
+    background: light
+    border: true
+    left: "Copyright 2022-2024, Jacopo Repossi."
+
+  search: 
+    location: navbar
+    type: overlay
+    show-item-context: tree
+
+  open-graph: true
+  back-to-top-navigation: true
+  page-navigation: true
+
+  google-analytics:
+      tracking-id: "G-1Q97EJFE86"
+      anonymize-ip: true 
+
+  comments:
+    giscus:
+      repo:                "jacoporepossi/learningq"
+      repo-id:             "R_kgDOGy_CXg"
+      category:            "Announcements"
+      category-id:         "DIC_kwDOGy_CXs4CBEft"
+      mapping:             "pathname"
+
+
+

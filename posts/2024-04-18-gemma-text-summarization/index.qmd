@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Text Summarization with Gemma"
+date:   2024-04-18 21:00:00 +0100
+categories: [LLM, NLP, Kaggle, Competitions, Data Science]
+---
+
+The goal of [this competition](https://www.kaggle.com/competitions/data-assistants-with-gemma) was to create a notebook that demonstrates how to use the Gemma LLM to accomplish one of the following data science oriented tasks:
+
+- Explain or teach basic data science concepts.
+- Answer common questions about the Python programming language.
+- Summarize Kaggle solution write-ups.
+- Explain or teach concepts from Kaggle competition solution write-ups.
+- Answer common questions about the Kaggle platform.
+
+My final choice was the complex world of text summarization using Gemma and LangChain. The key aspects I discuss are:
+
+- Establishing a text summarization pipeline using Gemma and LangChain
+- Providing an overview of the crucial parameters and methods one should keep in mind while working with an LLM
+- Exploring summarization techniques, such as Stuffing, MapReduce and Refine
+- Fine-tuning Gemma using Parameter Efficient Fine-Tuning (PEFT)
+- Future considerations and next steps
+
+This work aims to build a comprehensive understanding of the task and develop a pipeline that can serve as a good starting point for individuals interested in approaching summarization tasks using open-source models like Gemma.
+
+You can find [here](https://www.kaggle.com/code/jacoporepossi/text-summarization-with-gemma) the Kaggle notebook I published.
