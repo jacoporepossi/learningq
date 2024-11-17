@@ -7,7 +7,7 @@ format:
       light: flatly
       dark: darkly
     css: styles.css
-    fontsize: 12pt
+    fontsize: 11pt
 
 website:
   title: "Home"
@@ -25,7 +25,7 @@ website:
   page-footer:
     background: light
     border: true
-    left: "Copyright 2022-2024, Jacopo Repossi."
+    left: "Copyright 2021 - , Jacopo Repossi"
 
   search: 
     location: navbar

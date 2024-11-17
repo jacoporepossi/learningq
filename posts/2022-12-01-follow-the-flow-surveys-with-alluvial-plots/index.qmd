@@ -27,7 +27,7 @@ include-in-header:
         background-size: cover;
         background-position-y: center;
         height: 350px;
-        opacity: 0.5; /* image opacity, lower means lighter */
+        opacity: 0.9; /* image opacity, lower means lighter */
         z-index: -1;
       }
       </style>

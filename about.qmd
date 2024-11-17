@@ -1,8 +1,8 @@
 ---
 title: "Jacopo Repossi"
-image: .\assets\images\profile\me.jpg
+image: me.jpg
 about:
-  template: jolla
+  template: trestles
   links:
     - icon: linkedin
       text: LinkedIn
@@ -14,8 +14,19 @@ about:
       text: "{{< iconify fa6-brands:kaggle >}} Kaggle"
       href: https://www.kaggle.com/jacoporepossi
 comments: false
+format:
+  html:
+    grid:
+      body-width: 1200px
+      gutter-width: 1rem
 ---
 
+### Bio
 Graduated in Materials Engineering & Nanotechnology at Politecnico of Milan, I have a Master's in Data Science for Economics, Business and Finance at University of Milan.
 
 Passionate about technology and innovation, I currently work in Jakala as Senior Data Scientist in the Digital & Media Business Unit. My daily tasks are to analyze large-scale structured and unstructured data, performing deep-dive statistical analysis to address business objectives and clients' needs.
+
+### Teaching
+- Python - M.Sc. in Data Science for Digital Communication, UPA 2023
+- Big Data, Analytics and IoT - M.Sc. Digital Marketing & Data Analytics, H-Farm College 2023
+- Python & SQL - Master Data Driven Marketing & Digital Analytics, 24Ore Business School 2023

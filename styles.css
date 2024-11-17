@@ -16,3 +16,8 @@ color: orange;
 .quarto-navbar-tools {
 margin-left: 45px;  /* Adjust value as needed */
 }
+
+.about-contents {
+display: flex;
+align-items: center;    /* Centers vertically */
+}
