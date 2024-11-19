@@ -4,9 +4,47 @@
 # (see https://quarto.org/docs/projects/code-execution.html#freeze)
 freeze: true
 
-# Enable banner style title blocks
-title-block-banner: true
+# # Enable banner style title blocks
+# title-block-banner: true
 
 author: "Jacopo Repossi"
 toc: true
 smooth-scroll: true
+
+format:
+  html:
+    code-overflow: wrap
+    code-block-border-left: true
+    highlight-style: monokai
+    
+title-block-banner: "#00000000"
+title-block-banner-color: "rgba(255, 255, 255, 0.9)"
+include-in-header:
+  - text: |
+      <style>
+      #title-block-header.quarto-title-block.default .quarto-title-meta {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .quarto-title-block .quarto-title-banner {
+        height: 0; /* hide */
+      }
+      #title-block-header {
+        background: 
+          /* top, transparent black, faked with gradient */
+          linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          /* bottom, image */ 
+          url(./image.jpg);
+        background-size: cover;
+        background-position-y: center;
+        height: 350px;
+        opacity: 0.9; /* image opacity, lower means lighter */
+        z-index: -1;
+      }
+      </style>
+
+# Utils
+# custom code highlight https://www.reddit.com/r/RStudio/comments/ybbu2b/custom_syntax_highlighting_in_quarto_doc_code/ , https://stackoverflow.com/questions/77937498/custom-syntax-highlighting-for-light-and-dark-mode-quarto, https://stackoverflow.com/questions/74165230/how-to-highlight-custom-keywords-in-quarto-docs-code-chunks
+# nice blogs, especially for banner https://github.com/fuhrmanator/fuhrmanator.github.io/blob/master/posts/typescript-famix-generics/index.qmd  , https://github.com/zakvarty/quarto-website/blob/main/teaching.qmd

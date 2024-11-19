@@ -21,3 +21,7 @@ margin-left: 45px;  /* Adjust value as needed */
 display: flex;
 align-items: center;    /* Centers vertically */
 }
+
+code {
+    color: #042E4C; /* Text color inline code */
+}
