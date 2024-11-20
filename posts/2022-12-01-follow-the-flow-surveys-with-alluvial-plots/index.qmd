@@ -2,7 +2,7 @@
 layout: post
 title:  "Follow the flow: surveys with Alluvial plots"
 date:   2022-12-01 22:00:00 +0100
-categories: [Kaggle, Competitions, Data Visualization, Data Science]
+categories: [Kaggle, Competitions, Data Visualization]
 image: image.jpg
 ---
 

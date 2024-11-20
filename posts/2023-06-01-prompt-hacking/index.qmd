@@ -1,11 +1,14 @@
 ---
 layout: post
-title:  "Prompt Hacking: how to trick Large Language Models like ChatGPT"
+title:  "Prompt Hacking: How to trick Large Language Models like ChatGPT"
+subtitle: "Unlocking the Art and Ethics of Prompt Manipulation in AI Interaction"
 date:   2023-06-18 13:00:00 +0100
-categories: [LLM, Prompt Engineering, Aicrowd, Competitions, Data Science]
+categories: [Large Language Models, Prompt Engineering, Competitions]
 image: image.jpg
 syntax-definitions: 
   - custom.xml
+description: |
+  Delve into the intricacies of Prompt Hacking in AI competitions, exploring innovative techniques and solutions from the AIcrowd competition.
 ---
 
 ## Introduction

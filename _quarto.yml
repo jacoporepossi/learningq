@@ -11,6 +11,8 @@ format:
 
 website:
   title: "Home"
+  site-url: 'https://jacoporepossi.github.io/learningq'
+  site-path: '/'
   navbar:
     right:
       - text: "About me"

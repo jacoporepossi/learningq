@@ -1,0 +1,192 @@
+---
+layout: post
+title: "Object-oriented programming in Python: Classes - Part 2"
+subtitle: "Advanced concepts and practical applications"
+date: 2022-06-07 11:06:00 +0100
+categories: [Python Programming]
+image: image.jpg
+descrition: |
+    Continue the journey into Python classes, delving deeper into object-oriented programming concepts and applications
+---
+
+
+## Introduction
+In [Part 1](https://jacoporepossi.github.io/learningq/python%20programming/2022/05/28/python-classes-part1.html) of this Object-oriented programming tutorial, I explored the basics of Classes in Python, dealing with important concepts such as class variables and instance variables.
+
+It's now time to move on to other fundamental concepts such as **methods**.
+
+## Aim of this notebook
+
+In this second part we will explore the **static methods and class methods**, with emphasis on the difference between them and regular methods, when and how to use them.
+
+## Class methods
+
+In the previous tutorial, we created a `Pet` class able to store information about the `name` and `age` of pets, together with the number of pets owned by a person and the address of the city where the pet lives.
+
+
+```python
+class Pet():
+    city_address = 'Milan'
+    n_pets = 0
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Pet.n_pets += 1
+    
+    def get_id(self):
+        print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))
+
+print('I own {} pets'.format(Pet.n_pets))
+my_first_pet = Pet('Bob', 3)
+my_second_pet = Pet('Fido', 1)
+
+print('I now own {} pets'.format(Pet.n_pets))
+my_first_pet.get_id()
+my_second_pet.get_id()
+```
+
+    I own 0 pets
+    I now own 2 pets
+    My name is Bob and I am 3 yrs old. I live in Milan!
+    My name is Fido and I am 1 yrs old. I live in Milan!
+    
+
+In the example above, `get_id()` is a regular method that by default takes the instance as first argument, expressed as `self`.
+
+Class methods are methods that **take the class as first argument**, by convention expresses as `cls`.\
+Let's see one in action:
+
+
+```python
+class Pet():
+    city_address = 'Milan'
+    n_pets = 0
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Pet.n_pets += 1
+    
+    def get_id(self):
+        print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))
+    
+    @classmethod
+    def set_city(cls, city):
+        cls.city_address = city 
+        
+
+my_first_pet = Pet('Bob', 3)
+my_second_pet = Pet('Fido', 1)
+
+print(Pet.city_address)
+my_first_pet.get_id()
+my_second_pet.get_id()
+
+print('\nOWNER MOVES TO ROME')
+Pet.set_city('Rome')
+
+print(Pet.city_address)
+my_first_pet.get_id()
+my_second_pet.get_id()
+```
+
+    Milan
+    My name is Bob and I am 3 yrs old. I live in Milan!
+    My name is Fido and I am 1 yrs old. I live in Milan!
+    
+    OWNER MOVES TO ROME
+    Rome
+    My name is Bob and I am 3 yrs old. I live in Rome!
+    My name is Fido and I am 1 yrs old. I live in Rome!
+    
+
+Let's describe what happened.\
+`set_city()` is a class method thanks to the decorator `@classmethod` specified before declaring the function. As stated before, by convention instead of `self` we now use `cls` as we are now using the class itself.\
+The class method `set_city` takes city as argumento to change the class variable `city_address`. Indeed when we called `Pet.set_city('Rome')`, we changed the `city_address` for all instances of the class `Pet`!
+
+Class methods can be used also as [alternative constructors](https://realpython.com/python-multiple-constructors/#providing-multiple-constructors-with-classmethod-in-python): what it means is that we can use a class method that return an instance of the class.
+
+
+```python
+class Pet():
+    city_address = 'Milan'
+    n_pets = 0
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Pet.n_pets += 1
+    
+    def get_id(self):
+        print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))
+    
+    @classmethod
+    def set_city(cls, city):
+        cls.city_address = city 
+    
+    # class methods as alternative costructor
+    @classmethod
+    def from_petshop_catalogue(cls, pet_str):
+        name, age = pet_str.split(',')
+        return cls(name, age)
+
+new_pet = Pet.from_petshop_catalogue('Ugo,5')
+
+new_pet.get_id()
+```
+
+    My name is Ugo and I am 5 yrs old. I live in Milan!
+    
+
+Basically the method `from_petshop_catalogue()` is a class method able to take a string as an input and return a new `Pet` instance by splitting the string in `name` and `age`, passing these parameters to the `Pet` class.
+
+## Static methods
+
+The difference between a static method and a class method is that **static methods know nothing about the class** and just deal with the parameters.
+They behave just like regular functions and for convenience they are included in the class because **there are some logical connections with it**.\
+Let's see an example:
+
+
+```python
+class Pet():
+    city_address = 'Milan'
+    n_pets = 0
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Pet.n_pets += 1
+    
+    def get_id(self):
+        print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))
+    
+    @classmethod
+    def set_city(cls, city):
+        cls.city_address = city 
+        
+    @classmethod
+    def from_petshop(cls, pet_str):
+        name, age = pet_str.split(',')
+        return cls(name, age)
+    
+    @staticmethod
+    def is_adult(age):
+        return age > 7
+
+
+Pet.is_adult(8)
+
+```
+
+
+    True
+
+
+
+As we can see in this silly example, `is_adult()` doesn't need either `self` or `cls` as it is simply a method (static) that retuns `True` or `False` if the age is greater than `7`.
+
+## Conclusion
+
+In this notebook we learned the differences between class methods and static methods and how to use them to either manipulate the class or create utility functions within it.
+In the next tutorial we'll explore class inheritances in order to fully exploit the power of object-oriented programming in Python.

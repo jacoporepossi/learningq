@@ -1,0 +1,589 @@
+---
+layout: post
+title:  "Wordle: A Python Implementation"
+subtitle: "A Step-by-Step guide with code examples"
+date:   2022-05-26 13:06:00 +0100
+categories: [Python Programming]
+image: image.jpg
+description: |
+  Learn how to implement the popular game Wordle in Python, with step-by-step instructions and code examples.
+---
+
+## Introduction
+Wordle is a web-based word game created and developed by Welsh software engineer Josh Wardle, and owned and published by The New York Times Company since 2022.
+
+Why? Well, the word game that has grown from 90 users in 2021 to **around 2 million in February 2022**.<sup>[1](https://wtop.com/tech/2022/02/the-appeal-of-wordle-a-neurologists-view/)</sup>
+
+Players have **six attempts** to guess a **five-letter word**, with feedback given for each guess in the form of **colored tiles** indicating when letters match or occupy the correct position.<sup>[2](https://en.wikipedia.org/wiki/Wordle)</sup>
+
+<img src="https://i.inews.co.uk/content/uploads/2022/01/PRI_220305479.jpg?width=500">
+
+## Aim of this notebook
+
+Wordle is so addicting that the fact that there’s only one word per day if frustrating (but it explains the addiction in the first place!). If a player is unable to correctly guess it, they are forced to wait until the next day to try again.
+
+Why don't just recreate the game in Python? This is exactly what I'm going to do in this notebook. I took inspiration from [this project](https://www.freecodecamp.org/news/how-to-build-a-wordle-clone-using-python-and-rich/), from which I expanded some corner case (double letters) and words frequencies.
+
+Before starting, let's correctly understand the rules and corner cases.
+
+
+## Rules &  corner cases
+
+Wordle is quite easy to understand:
+- You have to guess the Wordle in six goes or less
+- Every word you enter must be an English word, presumably it should exists on a dictionary.
+- A correct letter turns green
+- A correct letter in the wrong place turns yellow
+- An incorrect letter turns gray
+- Letters can be used more than once
+
+Despite its semplicity, we should be careful with its implementation.\
+As a matter of fact, there are **3 main pain points**:
+1. Guessed word not existing or with lenght not equal to 5
+2. Repeated letters
+3. Repeated guess by the user
+
+In this Python implementation, I handled them differently: whilst **1** and **3** are easy `if` conditions with [`membership operators`](https://www.w3schools.com/python/python_operators.asp), **2** needs some caution.
+
+### Repeated letters
+Wordle words may have repeated letters. But how does Wordle give hints if a repeated letter is input in any of the five boxes in a row?
+
+
+I found a [blog](https://nerdschalk.com/wordle-same-letter-twice-rules-explained-how-does-it-work/) that helped me understand this rule:
+
+<img src="https://cdn.nerdschalk.com/wp-content/uploads/2022/01/abbey-b-1.png?width=400">
+
+Repeated letters **are treated just like any other letter in the game**. The second "B" in "Babes" is highlighted green, whereas the "B"s in yellow indicates their wrong letter position.
+
+What about repeating a letter **more than it appears** in the target word?
+
+<img src="https://cdn.nerdschalk.com/wp-content/uploads/2022/01/abbey-e.png?width=300">
+
+If you repeat a letter more than it appears, then the **excess will be highlighted in grey**.
+
+**With this in mind, we are ready to implement Wordle!**
+
+## Imports & Game setup
+
+To implement Wordle, we'll need:
+- a set of english words
+- some colors
+- random selection
+
+For this reason, we'll exploit the this [Kaggle dataset](https://www.kaggle.com/datasets/rtatman/english-word-frequency) for extracting english wordlist, `termcolor` to print text with colors and `random` for picking a random word from nltk.
+
+
+```python
+from random import choice
+from termcolor import colored
+```
+
+### Setups
+
+From the Kaggle dataset, we'll read the csv file using Pandas.
+
+This dataset contains the counts of the 333,333 most commonly-used single words on the English language web, as derived from the Google Web Trillion Word Corpus.
+
+
+```python
+import pandas as pd
+
+words = pd.read_csv('../input/english-word-frequency/unigram_freq.csv')
+```
+
+
+```python
+words.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>the</td>
+      <td>23135851162</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>of</td>
+      <td>13151942776</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>and</td>
+      <td>12997637966</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>to</td>
+      <td>12136980858</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>a</td>
+      <td>9081174698</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+words.tail()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>333328</th>
+      <td>gooek</td>
+      <td>12711</td>
+    </tr>
+    <tr>
+      <th>333329</th>
+      <td>gooddg</td>
+      <td>12711</td>
+    </tr>
+    <tr>
+      <th>333330</th>
+      <td>gooblle</td>
+      <td>12711</td>
+    </tr>
+    <tr>
+      <th>333331</th>
+      <td>gollgo</td>
+      <td>12711</td>
+    </tr>
+    <tr>
+      <th>333332</th>
+      <td>golgw</td>
+      <td>12711</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+We see that a lower count will cause the Game to use very rare words, so let's set a reasonable threashold of frequency.
+
+
+```python
+words.loc[(words['count']>=1000000)].tail(10)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>26278</th>
+      <td>punching</td>
+      <td>1000845</td>
+    </tr>
+    <tr>
+      <th>26279</th>
+      <td>lagrange</td>
+      <td>1000790</td>
+    </tr>
+    <tr>
+      <th>26280</th>
+      <td>distinguishes</td>
+      <td>1000579</td>
+    </tr>
+    <tr>
+      <th>26281</th>
+      <td>treadmills</td>
+      <td>1000577</td>
+    </tr>
+    <tr>
+      <th>26282</th>
+      <td>poi</td>
+      <td>1000422</td>
+    </tr>
+    <tr>
+      <th>26283</th>
+      <td>bebop</td>
+      <td>1000401</td>
+    </tr>
+    <tr>
+      <th>26284</th>
+      <td>streamlining</td>
+      <td>1000369</td>
+    </tr>
+    <tr>
+      <th>26285</th>
+      <td>dazzle</td>
+      <td>1000224</td>
+    </tr>
+    <tr>
+      <th>26286</th>
+      <td>trainings</td>
+      <td>1000194</td>
+    </tr>
+    <tr>
+      <th>26287</th>
+      <td>seeding</td>
+      <td>1000093</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+common_words = list(words.loc[(words['count']>=1000000)].astype(str).word.values)
+common_words[:10]
+```
+
+
+
+
+    ['the', 'of', 'and', 'to', 'a', 'in', 'for', 'is', 'on', 'that']
+
+
+
+
+```python
+english_5chars_words = [i.upper() for i in common_words if len(i) == 5]
+print(len(english_5chars_words))
+print(english_5chars_words[5:10])
+```
+
+    3254
+    ['FIRST', 'WOULD', 'THESE', 'CLICK', 'PRICE']
+    
+
+We have more than 3k 5-letter words to guess!
+
+Now it's time to set the colored tiles. For this, we'll simply copy paste from internet the three colored squares we need.
+
+
+```python
+TILES = {
+    'correct_place': '🟩',
+    'correct_letter': '🟨',
+    'incorrect': '⬛'
+}
+```
+
+How can we color the text using print? Here's how the termcolor library come to the rescue. We simply need to use the colored() function, specifying the color we want.
+
+
+```python
+print(colored('Example in green', 'green'))
+print(colored('Example in yellow', 'yellow'))
+```
+
+    [32mExample in green[0m
+    [33mExample in yellow[0m
+    
+
+
+```python
+colored('Example in green', 'green')
+```
+
+
+
+
+    '\x1b[32mExample in green\x1b[0m'
+
+
+
+`colored` simply returns our text with some other strings attached, later rendered in the desired color using `print`
+
+### Utils
+
+We need now to implement the core of our Wordle, that is the `validate_guess` function, which should be able to:
+- return the correct colors if the letters of the user are correct (green if the place is correct, yellow if they appear, black otherwise)
+- deal with repeated letters, so that if the target is `abbey` and the user inputs `keeps`, only one `e` will be colored in yellow. Similarly, if the user inputs `kebab`, one `b` will be green and the last one yellow.
+
+To do so, we'll exploit the [`replace` method](https://www.w3schools.com/python/ref_string_replace.asp), using the `count` parameter, which, according to the doc:
+>A number specifying how many occurrences of the old value you want to replace. Default is all occurrences
+
+Let's use again the `abbey` (target) and `keeps` (guess) example: when checking the first `e`, we color it in green and replace the target word's letter with `-` (`abb-y`). By doing so, we are making sure that the second `e` will be colored in grey.\
+This can be obtained `target.replace('e', '-', 1)`, with `1` specifying that we want to replace only the first occurence of the letter.
+
+
+```python
+def validate_guess(guess, answer):
+    guessed = []
+    tile_pattern = []
+    # Loop through every letter of the guess
+    for i, letter in enumerate(guess):
+        # If the letter is in the correct spot, color it in green and add the green tile
+        if answer[i] == guess[i]:
+            guessed += colored(letter, 'green')
+            tile_pattern.append(TILES['correct_place'])
+            # Replace the existing letter in the answer with -
+            answer = answer.replace(letter, '-', 1)
+        # whereas if the letter is in the correct spot, color it in yellow and add the yellow tile
+        elif letter in answer:
+            guessed += colored(letter, 'yellow')
+            tile_pattern.append(TILES['correct_letter'])
+            # Replace the existing letter in the answer with -
+            answer = answer.replace(letter, '-', 1)
+        # Otherwise, the letter doens't exist, just add the grey tile
+        else:
+            guessed += letter
+            tile_pattern.append(TILES['incorrect'])
+    
+    # Return the joined colored letters and tiles pattern
+    return ''.join(guessed), ''.join(tile_pattern)
+```
+
+## Game implementation
+
+We are ready to implement the game, now that we have our core function in place.
+
+The game itself is nothing but a while loop checking the correctness of the user's input and some prints!
+
+
+```python
+ALLOWED_GUESSES = 6
+
+
+def wordle_game(target):
+    GAME_ENDED = False
+    history_guesses = []
+    tiles_patterns = []
+    colored_guessed = []
+    
+    # Keep playing until the user runs out of tries or finds the word
+    while not GAME_ENDED:
+        guess = input().upper()
+        BAD_GUESS = True
+        # Check the user's guess
+        while BAD_GUESS:
+            # If the guess was already used
+            if guess in history_guesses:
+                print("You've already guessed this word!!\n")
+                guess = input().upper()
+            # If the guess has not 5 letters
+            elif len(guess) != 5:
+                print('Please enter a 5-letter word!!\n')
+                guess = input().upper()
+            # If the guess is not in the dictionary
+            elif guess not in english_5chars_words:
+                print('This word does not exist!')
+                guess = input().upper()
+            else:
+                BAD_GUESS = False
+        
+        # Append the valid guess
+        history_guesses.append(guess)
+        # Validate the guess
+        guessed, pattern = validate_guess(guess, target)
+        # Append the results
+        colored_guessed.append(guessed)
+        tiles_patterns.append(pattern)
+        
+        # For each result (also the previous ones), it'll print the colored guesses and the tile pattern
+        for g, p in zip(colored_guessed, tiles_patterns):
+            print(g, end=' ')
+            print(p)
+        print()
+        
+        # If the guess is the target or if the user ran out of tries, end the game
+        if guess == target or len(history_guesses) == ALLOWED_GUESSES:
+            GAME_ENDED = True
+    
+    # Print the results
+    if len(history_guesses) == ALLOWED_GUESSES and guess != target:
+        print("\nDANG IT! YOU RAN OUT OF TRIES. THE CORRECT WORD WAS {}".format(colored(target, 'green')))
+    else:
+        print("\nGOOD JOB, YOU NAILED IT IN {}/{} TRIES\n".format(len(history_guesses),
+                                                                  ALLOWED_GUESSES))
+
+
+# Select a random 5 letter word to guess
+target_word = choice(english_5chars_words)
+
+print('WELCOME TO WORDLE')
+print('NOW GUESS! YOU HAVE {} TRIES\n'.format(ALLOWED_GUESSES))
+wordle_game(target_word)
+```
+
+    WELCOME TO WORDLE
+    NOW GUESS! YOU HAVE 6 TRIES
+    
+    
+
+     heart
+    
+
+    HEART ⬛🟨⬛⬛⬛
+    
+    
+
+     orbit
+    
+
+    HEART ⬛🟨⬛⬛⬛
+    ORBIT 🟨⬛⬛⬛⬛
+    
+    
+
+     mmmmmmm
+    
+
+    Please enter a 5-letter word!!
+    
+    
+
+     mmmm
+    
+
+    Please enter a 5-letter word!!
+    
+    
+
+     mmmmm
+    
+
+    This word does not exist!
+    
+
+     cello
+    
+
+    HEART ⬛🟨⬛⬛⬛
+    ORBIT 🟨⬛⬛⬛⬛
+    CELLO ⬛🟨🟩⬛🟨
+    
+    
+
+     melon
+    
+
+    HEART ⬛🟨⬛⬛⬛
+    ORBIT 🟨⬛⬛⬛⬛
+    CELLO ⬛🟨🟩⬛🟨
+    MELON ⬛🟨🟩🟨⬛
+    
+    
+
+     golem
+    
+
+    This word does not exist!
+    
+
+     moles
+    
+
+    This word does not exist!
+    
+
+     poles
+    
+
+    HEART ⬛🟨⬛⬛⬛
+    ORBIT 🟨⬛⬛⬛⬛
+    CELLO ⬛🟨🟩⬛🟨
+    MELON ⬛🟨🟩🟨⬛
+    POLES ⬛🟩🟩🟩⬛
+    
+    
+
+     soled
+    
+
+    This word does not exist!
+    
+
+     foley
+    
+
+    HEART ⬛🟨⬛⬛⬛
+    ORBIT 🟨⬛⬛⬛⬛
+    CELLO ⬛🟨🟩⬛🟨
+    MELON ⬛🟨🟩🟨⬛
+    POLES ⬛🟩🟩🟩⬛
+    FOLEY 🟩🟩🟩🟩🟩
+    
+    
+    GOOD JOB, YOU NAILED IT IN 6/6 TRIES
+    
+    
+
+## Conclusions and next steps
+
+This was a fun experiment and now I'm planning on using streamlit to implement a webapp with this game!
+
+Another possible future implementation could be the creation of two distinct datasets containing the words, one easy and one difficult, so that you can play in two easy or hard modes.

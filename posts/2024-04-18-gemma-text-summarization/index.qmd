@@ -1,10 +1,15 @@
 ---
 layout: post
 title:  "Text Summarization with Gemma"
+subtitle: "Mastering text summarization techniques using open source models and Langchain"
 date:   2024-04-18 21:00:00 +0100
-categories: [LLM, NLP, Kaggle, Competitions, Data Science]
+categories: [Large Language Models, NLP, Kaggle, Competitions]
+image: image.jpg
+description: |
+    Insights from the Kaggle Gemma text summarization competition, where I explored using Gemma for effective text summarization in data science tasks.
 ---
 
+## Overview
 The goal of [this competition](https://www.kaggle.com/competitions/data-assistants-with-gemma) was to create a notebook that demonstrates how to use the Gemma LLM to accomplish one of the following data science oriented tasks:
 
 - Explain or teach basic data science concepts.
