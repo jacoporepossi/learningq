@@ -1,0 +1,27 @@
+/* css styles */
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Apply the font to the entire document */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Navbar link hover effect */
+.navbar a:hover {
+color: orange;
+}
+
+/* Add margin to the navbar tools section */
+.quarto-navbar-tools {
+margin-left: 45px;  /* Adjust value as needed */
+}
+
+.about-contents {
+display: flex;
+align-items: center;    /* Centers vertically */
+}
+
+code {
+    color: #042E4C; /* Text color inline code */
+}
