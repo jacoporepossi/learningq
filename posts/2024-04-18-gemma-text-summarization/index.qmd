@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Text Summarization with Gemma"
-subtitle: "Mastering text summarization techniques using open source models and Langchain"
 date:   2024-04-18 21:00:00 +0100
 categories: [Large Language Models, NLP, Kaggle, Competitions]
 image: image.jpg
 description: |
-    Insights from the Kaggle Gemma text summarization competition, where I explored using Gemma for effective text summarization in data science tasks.
+    Insights from the Kaggle Gemma text summarization competition, where I explored summarization techniques using Gemma and LangChain.
+keywords: [nlp kaggle, gemma text summarization, langchain]
 ---
 
 ## Overview

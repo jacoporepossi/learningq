@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Object-oriented programming in Python: Classes - Part 1"
-subtitle: "Essential concepts and hands-on examples"
 date: 2022-05-28 11:06:00 +0100
 categories: [Python Programming]
 image: image.jpg
 description: |
     Dive into the fundamentals of Python classes with this introductory guide, covering essential concepts with examples.
+keywords: [python classes, object oriented programming in python]
 ---
 
 ## Introduction

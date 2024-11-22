@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Cross Validation and Nested Cross Validation"
-subtitle: "A comprehensive guide to perform cross-validation in Machine Learning"
 date:   2022-02-08 13:06:00 +0100
 categories: [Machine Learning, Cross Validation]
 description: |
-    How to effectively use cross-validation techniques, with practical examples and clear explanations to improve the model evaluation process.
+    How to effectively use cross-validation techniques in Machine Learning, with practical examples and clear explanations to improve the model evaluation process.
 image: image.jpg
+keywords: [cross validation in python, nested cross validation]
 ---
 
 ## Introduction

@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Citizen Data Scientists: the role of AutoML"
-subtitle: "How AutoML tools empower and boost productivity: a survey review"
 date:   2021-11-28 13:06:00 +0100
 categories: [Kaggle, Competitions, Data Visualization]
 image: image.jpg
 description: |
     Examine the impact of AutoML tools on citizen data scientists, exploring how these technologies democratize data science and enhance productivity.
+keywords: [citizen data scientist, automl kaggle, tableau in python]
 ---
 
 ## Introduction

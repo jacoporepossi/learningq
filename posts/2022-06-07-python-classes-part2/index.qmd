@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Object-oriented programming in Python: Classes - Part 2"
-subtitle: "Advanced concepts and practical applications"
 date: 2022-06-07 11:06:00 +0100
 categories: [Python Programming]
 image: image.jpg
-descrition: |
+description: |
     Continue the journey into Python classes, delving deeper into object-oriented programming concepts and applications
+keywords: [python classes, object oriented programming in python]
 ---
 
 

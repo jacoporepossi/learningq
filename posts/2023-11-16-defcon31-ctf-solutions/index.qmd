@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Kaggle DEFCON31 - Write-up"
-subtitle: "Machine Learning security challenges"
 date:   2023-11-16 18:00:00 +0100
 categories: [Capture The Flag, Adversarial attacks, Prompt Engineering, Kaggle, Competitions]
 image: image.jpg
 description: |
-    Reflection on the DEFCON31 CTF competition, highlighting approaches and techniques in cybersecurity.
+    Reflection on the DEFCON31 CTF competition, highlighting approaches and techniques in cybersecurity by tackling Machine Learning challenges.
+keywords: [defcon 31 ctf, defcon kaggle, prompt hacking, llm ctf, ai security]
 ---
 
 This is my second year that I participate in the DEFCON challenge, this year it was not during summer so I had the chance to put in more effort. \

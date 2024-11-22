@@ -44,7 +44,3 @@ include-in-header:
         z-index: -1;
       }
       </style>
-
-# Utils
-# custom code highlight https://www.reddit.com/r/RStudio/comments/ybbu2b/custom_syntax_highlighting_in_quarto_doc_code/ , https://stackoverflow.com/questions/77937498/custom-syntax-highlighting-for-light-and-dark-mode-quarto, https://stackoverflow.com/questions/74165230/how-to-highlight-custom-keywords-in-quarto-docs-code-chunks
-# nice blogs, especially for banner https://github.com/fuhrmanator/fuhrmanator.github.io/blob/master/posts/typescript-famix-generics/index.qmd  , https://github.com/zakvarty/quarto-website/blob/main/teaching.qmd , https://github.com/tarleb/tarleb.github.io/blob/main/_quarto.yml

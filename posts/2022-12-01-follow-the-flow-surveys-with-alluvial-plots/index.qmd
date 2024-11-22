@@ -3,7 +3,10 @@ layout: post
 title:  "Follow the flow: surveys with Alluvial plots"
 date:   2022-12-01 22:00:00 +0100
 categories: [Kaggle, Competitions, Data Visualization]
+description: |
+    A Comprehensive guide to understanding and utilizing Alluvial plots in Python.
 image: image.jpg
+keywords: [alluvial plot, data storytelling, analyze surveys]
 ---
 
 As per [last year](https://jacoporepossi.github.io/learningq/kaggle/competitions/data%20visualization/data%20science/2021/11/28/citizen-data-scientists-the-role-of-auto-ml-tools.html), I took part to the [Kaggle's annual](https://www.kaggle.com/competitions/kaggle-survey-2022) Machine Learning and Data Science Survey competition.

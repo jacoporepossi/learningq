@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Wordle: A Python Implementation"
-subtitle: "A Step-by-Step guide with code examples"
 date:   2022-05-26 13:06:00 +0100
 categories: [Python Programming]
 image: image.jpg
 description: |
-  Learn how to implement the popular game Wordle in Python, with step-by-step instructions and code examples.
+  Learn how to implement the popular game Wordle in Python with step-by-step instructions and code examples.
+keywords: [wordle in python, wordle]
 ---
 
 ## Introduction
