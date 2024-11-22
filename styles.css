@@ -25,3 +25,7 @@ align-items: center;    /* Centers vertically */
 code {
     color: #042E4C; /* Text color inline code */
 }
+
+.keywords {
+    opacity: 0; /* Hide keywords */
+}
