@@ -11,6 +11,10 @@ format:
       dark: darkly
     css: styles.css
     fontsize: 11pt
+    include-after-body: 
+      text: |
+        <script type="application/javascript" src="static/js/redirects.js"></script>
+
 
 website:
   title: "Home"
