@@ -3,6 +3,7 @@ project:
 
 resources: 
   - "robots.txt"
+  - static/**
 
 format:
   html:
@@ -13,7 +14,7 @@ format:
     fontsize: 11pt
     include-after-body: 
       text: |
-        <script type="application/javascript" src="static/js/redirects.js"></script>
+        <script type="application/javascript" src="/static/js/redirects.js"></script>
 
 
 website:
