@@ -5,8 +5,8 @@ include-before-body:
     text: |
         <script type="application/javascript">
         const redirects = {
-            "python%20programming/2022/05/26/wordle-a-python-implementation.html":
-            "posts/2022-05-26-wordle-a-python-implementation/index.html",
+            "/learningq/python%20programming/2022/05/26/wordle-a-python-implementation.html":
+            "/learningq/posts/2022-05-26-wordle-a-python-implementation/",
         };
         const path = window.location.pathname;
         if (redirects[path]) {
