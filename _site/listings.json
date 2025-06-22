@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2025-06-22-prompt-hacking-cbrne/index.html",
       "/posts/2024-06-29-satml-llm-ctf/index.html",
       "/posts/2024-04-18-gemma-text-summarization/index.html",
       "/posts/2023-11-16-defcon31-ctf-solutions/index.html",

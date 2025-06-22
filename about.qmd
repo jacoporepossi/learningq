@@ -27,6 +27,6 @@ Graduated in Materials Engineering & Nanotechnology at Politecnico of Milan, I h
 Passionate about technology and innovation, I currently work in Jakala as Senior Data Scientist in the Digital & Media Business Unit. My daily tasks are to analyze large-scale structured and unstructured data, performing deep-dive statistical analysis to address business objectives and clients' needs.
 
 ### Teaching activities
-- Python - M.Sc. in Data Science for Digital Communication, UPA 2023
-- Big Data, Analytics and IoT - M.Sc. Digital Marketing & Data Analytics, H-Farm College 2023
-- Python & SQL - Master Data Driven Marketing & Digital Analytics, 24Ore Business School 2023
+- Python - M.Sc. in Data Science for Digital Communication, UPA 2023, 2025
+- Big Data, Analytics and IoT - M.Sc. Digital Marketing & Data Analytics, H-Farm College 2023, 2025
+- Python & SQL - Master Data Driven Marketing & Digital Analytics, 24Ore Business School 2023, 2025
