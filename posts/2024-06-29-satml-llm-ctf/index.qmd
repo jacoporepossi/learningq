@@ -16,11 +16,13 @@ After competing in 2023 in a [prompt hacking competition](https://jacoporepossi.
 The aim of the competition was to determine whether simple prompting and filtering mechanisms could make LLM applications robust to prompt injection and extraction.
 
 Participants were asked to assume the roles of defenders and/or attackers:
+
 - Defenders will craft prompts and filters to instruct an LLM to keep a secret, aiming to prevent its discovery in a conversation.
 - Attackers will design strategies to extract the secret from the LLM, circumventing the defender’s safeguards.
 
 Unfortunately I did not spend enough time carefully engineering my defense or exploiting the warm-up phase before the attack phase to fine-tune my attacks.\
 However, I'm happy with my results:
+
 - My defense placed 14 out of 24, with 11 breaches out of 73 tentatives by other teams (filtering rate of 85%)
 - I was able to break 14 out of 43 defenses (33% success rate) 
 

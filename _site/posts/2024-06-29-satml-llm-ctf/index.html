@@ -289,9 +289,17 @@ background: #00000000;
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>After competing in 2023 in a <a href="https://jacoporepossi.github.io/learningq/aicrowd/competitions/data%20science/2023/06/18/prompt-hacking.html">prompt hacking competition</a>, I spotted another excellent opportunity to explore more about this topic through the <a href="https://ctf.spylab.ai/">Large Language Model Capture-the-Flag (LLM CTF) Competition @ SaTML 2024</a>.</p>
 <p>The aim of the competition was to determine whether simple prompting and filtering mechanisms could make LLM applications robust to prompt injection and extraction.</p>
-<p>Participants were asked to assume the roles of defenders and/or attackers: - Defenders will craft prompts and filters to instruct an LLM to keep a secret, aiming to prevent its discovery in a conversation. - Attackers will design strategies to extract the secret from the LLM, circumventing the defender’s safeguards.</p>
+<p>Participants were asked to assume the roles of defenders and/or attackers:</p>
+<ul>
+<li>Defenders will craft prompts and filters to instruct an LLM to keep a secret, aiming to prevent its discovery in a conversation.</li>
+<li>Attackers will design strategies to extract the secret from the LLM, circumventing the defender’s safeguards.</li>
+</ul>
 <p>Unfortunately I did not spend enough time carefully engineering my defense or exploiting the warm-up phase before the attack phase to fine-tune my attacks.<br>
-However, I’m happy with my results: - My defense placed 14 out of 24, with 11 breaches out of 73 tentatives by other teams (filtering rate of 85%) - I was able to break 14 out of 43 defenses (33% success rate)</p>
+However, I’m happy with my results:</p>
+<ul>
+<li>My defense placed 14 out of 24, with 11 breaches out of 73 tentatives by other teams (filtering rate of 85%)</li>
+<li>I was able to break 14 out of 43 defenses (33% success rate)</li>
+</ul>
 <p>Before explaining my strategies, it’s important to understand the competition setup and rules.</p>
 </section>
 <section id="competition-setup" class="level2">
