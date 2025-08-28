@@ -5,9 +5,6 @@ include-before-body:
     text: |
         <script type="application/javascript">
         const redirects = {
-            "/learningq/python%20programming/2022/05/26/wordle-a-python-implementation.html":
-            "/learningq/posts/2022-05-26-wordle-a-python-implementation/",
-
             "/learningq/python%20programming/2022/06/07/python-classes-part2.html":
             "/learningq/posts/2022-06-07-python-classes-part2/",
 
