@@ -4,6 +4,13 @@ project:
 resources: 
   - "robots.txt"
   - "python programming\\2022\\05\\26"
+  - "python programming\\2022\\05\\28"
+  - "python programming\\2022\\06\\07"
+  - "machine learning\\statistics\\data science\\2022\\02\\08"
+  - "data visualization\\data science\\2022\\03\\04"
+  - "kaggle\\competitions\\data visualization\\data science\\2022\\12\\01"
+  - "kaggle\\competitions\\data science\\2024\\04\\18"
+  - "aicrowd\\competitions\\data science\\2023\\06\\18"
 
 format:
   html:
