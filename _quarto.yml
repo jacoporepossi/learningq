@@ -24,6 +24,8 @@ format:
 website:
   title: "Home"
   site-url: 'https://jacoporepossi.github.io/learningq'
+  cookie-consent:
+    type: express
   navbar:
     right:
       - text: "About me"
@@ -38,7 +40,10 @@ website:
   page-footer:
     background: light
     border: true
-    left: "Copyright 2021 - , Jacopo Repossi"
+    left: "© 2025, Jacopo Repossi"
+    right: 
+      - text: "Site Map"
+        href: sitemap.qmd
 
   search: 
     location: navbar
