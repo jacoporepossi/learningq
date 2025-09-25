@@ -3,6 +3,7 @@ project:
 
 resources: 
   - "robots.txt"
+  - "styles.css"
   - "python programming\\2022\\05\\26"
   - "python programming\\2022\\05\\28"
   - "python programming\\2022\\06\\07"
