@@ -13,6 +13,7 @@ page-layout: full
 comments: false
 title-block-banner: "#00000000"
 title-block-banner-color: "rgba(255, 255, 255, 0.9)"
+canonical-url: true
 include-in-header:
   - text: |
       <style>
