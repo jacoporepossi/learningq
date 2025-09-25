@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language>
-<language name="custom" version="1" kateversion="5.44" section="Custom" extensions="*.txt" mimetype="text/plain" casesensitive="0" author="Jacopo Repossi" license="LGPL">  <highlighting>
+<language name="custom" version="1" kateversion="5.44" section="Custom" extensions="*.txt" mimetype="text/plain" casesensitive="0" author="Jacopo Repossi" license="LGPL">
+  <highlighting>
     <contexts>
       <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
         <DetectChar attribute="Highlighted Text" context="Delimited Text" char="|"/>
