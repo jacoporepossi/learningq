@@ -4,8 +4,10 @@ title:  "Prompt Hacking: How to trick Large Language Models like ChatGPT"
 date:   2023-06-18 13:00:00 +0100
 categories: [Large Language Models, Prompt Engineering, Competitions]
 image: image.jpg
-syntax-definitions: 
-  - custom.xml
+format:
+  html:
+    syntax-definitions: 
+      - custom.xml
 description: |
   Unlocking the art of Prompt Hacking in AI in this fun LLM-based competition.
 keywords: [prompt hacking, how to trick llm, chatgpt prompt hacking, prompt engineering]
