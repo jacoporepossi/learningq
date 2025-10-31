@@ -1,2 +1,3 @@
 /.quarto/
 .sass-cache
+**/*.quarto_ipynb
