@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/sitemap.html",
     "items": [
       "/posts/2025-06-22-prompt-hacking-cbrne/index.html",
       "/posts/2024-06-29-satml-llm-ctf/index.html",
@@ -8,6 +8,7 @@
       "/posts/2023-11-16-defcon31-ctf-solutions/index.html",
       "/posts/2023-06-01-prompt-hacking/index.html",
       "/posts/2022-12-01-follow-the-flow-surveys-with-alluvial-plots/index.html",
+      "/posts/2022-07-01-python-classes-part3/index.html",
       "/posts/2022-06-07-python-classes-part2/index.html",
       "/posts/2022-05-28-python-classes-part1/index.html",
       "/posts/2022-05-26-wordle-a-python-implementation/index.html",
@@ -17,7 +18,7 @@
     ]
   },
   {
-    "listing": "/sitemap.html",
+    "listing": "/index.html",
     "items": [
       "/posts/2025-06-22-prompt-hacking-cbrne/index.html",
       "/posts/2024-06-29-satml-llm-ctf/index.html",
@@ -25,6 +26,7 @@
       "/posts/2023-11-16-defcon31-ctf-solutions/index.html",
       "/posts/2023-06-01-prompt-hacking/index.html",
       "/posts/2022-12-01-follow-the-flow-surveys-with-alluvial-plots/index.html",
+      "/posts/2022-07-01-python-classes-part3/index.html",
       "/posts/2022-06-07-python-classes-part2/index.html",
       "/posts/2022-05-28-python-classes-part1/index.html",
       "/posts/2022-05-26-wordle-a-python-implementation/index.html",
