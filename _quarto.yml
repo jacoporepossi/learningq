@@ -21,10 +21,10 @@ format:
     css: "./styles.css"
     fontsize: 11pt
 
-
 website:
-  title: "Home"
+  title: "Learning Queue"
   site-url: 'https://jacoporepossi.github.io/learningq'
+  description: "Notes and tutorials on Data Science, ML, and LLMs." 
   cookie-consent:
     type: express
   navbar:

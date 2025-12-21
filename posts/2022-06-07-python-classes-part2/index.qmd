@@ -6,12 +6,12 @@ categories: [Python Programming]
 image: image.jpg
 description: |
     Continue the journey into Python classes, delving deeper into object-oriented programming concepts and applications
-keywords: [python classes, object oriented programming in python]
+keywords: [python classes, object oriented programming python, python classmethod vs staticmethod, python oop methods self vs cls]
 ---
 
 
 ## Introduction
-In [Part 1](https://jacoporepossi.github.io/learningq/python%20programming/2022/05/28/python-classes-part1.html) of this Object-oriented programming tutorial, I explored the basics of Classes in Python, dealing with important concepts such as class variables and instance variables.
+In [Part 1](https://jacoporepossi.github.io/learningq/posts/2022-05-28-python-classes-part1/) of this Object-oriented programming tutorial, I explored the basics of Classes in Python, dealing with important concepts such as class variables and instance variables.
 
 It's now time to move on to other fundamental concepts such as **methods**.
 

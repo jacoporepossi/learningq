@@ -11,7 +11,7 @@
 <meta name="keywords" content="cross validation in python, nested cross validation">
 <meta name="description" content="How to effectively use cross-validation techniques in Machine Learning, with practical examples and clear explanations to improve the model evaluation process.">
 
-<title>Cross Validation and Nested Cross Validation – Home</title>
+<title>Cross Validation and Nested Cross Validation – Learning Queue</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,14 +78,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4c7b890cc350be7067044af900615741.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-98424c7849dbc4d865a4632733296acd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fc8f9f2a7b3ab62723041bc2d0330762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-98424c7849dbc4d865a4632733296acd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3ed211e4df987f4863ff88643348f296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c68dbb949a069cde9f8d686dce161da3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-3ed211e4df987f4863ff88643348f296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -181,10 +181,10 @@ background: #00000000;
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Cross Validation and Nested Cross Validation – Home">
+<meta property="og:title" content="Cross Validation and Nested Cross Validation – Learning Queue">
 <meta property="og:description" content="How to effectively use cross-validation techniques in Machine Learning, with practical examples and clear explanations to improve the model evaluation process.">
 <meta property="og:image" content="https://jacoporepossi.github.io/learningq/posts/2022-02-08-tutorial-cross-validation-nested-cv/image.jpg">
-<meta property="og:site_name" content="Home">
+<meta property="og:site_name" content="Learning Queue">
 <link rel="canonical" href="https://jacoporepossi.github.io/learningq/posts/2022-02-08-tutorial-cross-validation-nested-cv/">
 </head>
 
@@ -360,7 +360,7 @@ background: #00000000;
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Home</span>
+    <span class="navbar-title">Learning Queue</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -473,14 +473,20 @@ background: #00000000;
 <section id="approach" class="level2">
 <h2 class="anchored" data-anchor-id="approach">Approach</h2>
 <p>When searching for parameters and estimating the error of a model, one could be tempted to use only one Cross Validation loop.</p>
-<p><img src="https://www.researchgate.net/profile/Johar-Ashfaque/publication/332370436/figure/fig1/AS:746775958806528@1555056671117/Diagram-of-k-fold-cross-validation-with-k-10-Image-from-Karl-Rosaen-Log.ppm" width="450" height="300"></p>
+<p><img src="https://towardsdatascience.com/wp-content/uploads/2021/01/1AAwIlHM8TpAVe4l2FihNUQ.png" width="550" height="300"></p>
 <p>In the image above, we see an example of a generic <strong>K-fold</strong> cross validation. This procedure can be used both when <strong>optimizing the hyperparameters of a model and when comparing and selecting a model for the dataset</strong>. When the same cross-validation procedure and dataset are used to <strong>both tune and select a model</strong>, it is likely to lead to a <strong>biased evaluation</strong> of the model performance.</p>
 <p>One way to avoid this is to <strong>set aside</strong> a piece of data, aka the <strong>test set</strong>.</p>
 <p><img src="https://scikit-learn.org/stable/_images/grid_search_cross_validation.png" width="450" height="300"></p>
-<p>In this approach: - The dataset is divided in training, validation and test set - The model is trained using the training fold - Hyperparameters are tested on the validation set - The final performance are evaluated on the test set.</p>
+<p>In this approach:</p>
+<ul>
+<li>The dataset is divided in training, validation and test set</li>
+<li>The model is trained using the training fold</li>
+<li>Hyperparameters are tested on the validation set</li>
+<li>The final performance are evaluated on the test set.</li>
+</ul>
 <p>What about <strong>Nested Cross Validation then</strong>?</p>
 <p>To generalize better, we simply <strong>rotate the test set on the entire dataset</strong>. By doing so, we are sure to have a <strong>better overview</strong> of the performance of our model on the totality of the data.</p>
-<p><img src="https://privefl.github.io/R-presentation/nested-crossval.png" width="450" height="400"></p>
+<p><img src="https://privefl.github.io/R-presentation/nested-crossval.png" width="550" height="400"></p>
 <p><strong>Let’s see it in action!</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>

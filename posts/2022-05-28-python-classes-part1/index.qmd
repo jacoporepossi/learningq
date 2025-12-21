@@ -6,7 +6,7 @@ categories: [Python Programming]
 image: image.jpg
 description: |
     Dive into the fundamentals of Python classes with this introductory guide, covering essential concepts with examples.
-keywords: [python classes, object oriented programming in python]
+keywords: [python classes, python __init__ method, python class vs instance variables]
 ---
 
 ## Introduction
@@ -189,8 +189,7 @@ print(Pet.__dict__)
     {'__module__': '__main__', 'city_address': 'Rome', '__init__': <function Pet.__init__ at 0x000001AE49139F70>, 'get_id': <function Pet.get_id at 0x000001AE491393A0>, '__dict__': <attribute '__dict__' of 'Pet' objects>, '__weakref__': <attribute '__weakref__' of 'Pet' objects>, '__doc__': None}
     
 
-All the above is happening because the we defined the get_id method using `self.city_address`
-> `print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))`
+All the above is happening because the we defined the `get_id` method using `self.city_address`.
 
 Should it be always like that? What about `Pet.city_address`?\
 As we saw, it is convenient to have the flexibility of being able to change the city in which the Pet lives, so it makes sense to leave `self` in the method.

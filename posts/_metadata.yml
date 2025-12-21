@@ -2,7 +2,7 @@
 
 # freeze computational output
 # (see https://quarto.org/docs/projects/code-execution.html#freeze)
-freeze: true
+freeze: auto
 
 # # Enable banner style title blocks
 # title-block-banner: true
@@ -15,7 +15,7 @@ format:
   html:
     code-overflow: wrap
     code-block-border-left: true
-    highlight-style: monokai
+    highlight-style: github
 
 title-block-banner: "#00000000"
 title-block-banner-color: "rgba(255, 255, 255, 0.9)"

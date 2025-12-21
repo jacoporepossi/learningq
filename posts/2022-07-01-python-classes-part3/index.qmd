@@ -1,0 +1,209 @@
+---
+layout: post
+title: "Object-oriented programming in Python: Classes - Part 3"
+date: 2022-07-01 11:00:00 +0100
+categories: [Python Programming]
+image: image.jpg
+description: |
+    Learn how to use class inheritance in Python to reuse code, create subclasses, and build flexible object hierarchies
+keywords: [python classes, object oriented programming python inheritance, python oop inheritance, super() in python, class vs instance variables python]
+format:
+  html:
+    css: styles.css
+---
+
+## Introduction
+In [Part 2](https://jacoporepossi.github.io/learningq/posts/2022-06-07-python-classes-part2/), I explored the differences between class methods and static methods and how to use them to either manipulate the class or create utility functions within it.
+
+In this last part, I'll talk about **class inheritance**.
+
+## Aim of this notebook
+
+One of the most powerful features of object-oriented programming is the ability to create new classes based on existing ones. This is called **inheritance**, and it's what we'll focus on in this final part of the series.
+
+Think about the `Pet` class we've been building throughout this tutorial. What if we want to create specific types of pets like `Dog`, `Cat`, or `Fish`? They all share common characteristics (name, age), but each has unique traits too. Dogs have breeds and bark, cats meow, and fish... well, fish just swim silently!
+
+Rather than creating entirely separate classes from scratch, we can use inheritance to reuse the common functionality and add only what's unique to each pet type.
+
+## What is Class Inheritance?
+
+Inheritance lets us create new classes by **reusing** and **extending** existing ones without copy-pasting code. The existing class is commonly called the **base class** (also known as parent or superclass), and the new class is the **subclass** (also known as child or derived class).
+
+In this notebook we'll explore:
+
+1. Basic inheritance syntax
+2. Overriding methods and using `super()`
+3. Class vs instance variables in subclasses
+4. Multiple inheritance and Method Resolution Order (MRO)
+
+## Basic inheritance syntax
+
+Let's start from the `Pet` class we've been working with throughout this series:
+
+```python
+class Pet:
+    city_address = 'Milan'
+    n_pets = 0
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Pet.n_pets += 1
+
+    def get_id(self):
+        print(f'My name is {self.name} and I am {self.age} yrs old. I live in {self.city_address}!')
+
+
+class Dog(Pet):  # Dog inherits from Pet
+    def speak(self):
+        return 'Woof!'
+
+
+class Cat(Pet):  # Cat inherits from Pet
+    def speak(self):
+        return 'Meow!'
+
+
+rex = Dog('Rex', 4)
+mia = Cat('Mia', 2)
+
+rex.get_id()
+mia.get_id()
+print(rex.speak(), mia.speak())
+print(isinstance(rex, Pet), isinstance(mia, Pet))
+```
+
+    My name is Rex and I am 4 yrs old. I live in Milan!
+    My name is Mia and I am 2 yrs old. I live in Milan!
+    Woof! Meow!
+    True True
+
+The syntax `class Dog(Pet):` tells Python to create a new class `Dog` that inherits from `Pet`. This means everything in `Pet` (attributes, methods) is automatically available to `Dog` unless we decide to override it.
+
+Notice how both `rex` and `mia` can use the `get_id()` method even though we never defined it in the `Dog` or `Cat` classes. They inherited it from `Pet`! However, each has its own unique `speak()` method.
+
+The `isinstance()` function confirms that both `rex` and `mia` are indeed instances of `Pet`, even though they were created from the `Dog` and `Cat` classes.
+
+## Overriding methods and using `super()`
+
+What if we want to customize how a subclass behaves? We can **override** methods by defining a method with the same name in the subclass.
+
+Let's say we want our `Dog` class to store an additional attribute (breed) and display it in the ID. Here's how:
+
+```python
+class Pet:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def get_id(self):
+        print(f'My name is {self.name} and I am {self.age} yrs old.')
+
+
+class Dog(Pet):
+    def __init__(self, name, age, breed):
+        # Call parent constructor so name & age get set
+        super().__init__(name, age)
+        self.breed = breed
+
+    def get_id(self):  # Override the parent method
+        # First, do what the parent does
+        super().get_id()
+        # Then add our own behavior
+        print(f'I am a {self.breed}.')
+
+buddy = Dog('Buddy', 5, 'Labrador')
+buddy.get_id()
+```
+
+    My name is Buddy and I am 5 yrs old.
+    I am a Labrador.
+
+Here's what's happening:
+
+1. We override `__init__` to accept a `breed` parameter
+2. We use `super().__init__(name, age)` to call the parent's initialization first, which sets `name` and `age`
+3. Then we add the `breed` attribute specific to dogs
+4. We also override `get_id()` to add breed information
+
+The `super()` function is crucial here. If we forgot to call `super().__init__(name, age)`, the `name` and `age` attributes would never get set, and our code would break!
+
+## Class vs instance variables in subclasses
+
+Remember from [Part 1](https://jacoporepossi.github.io/learningq/posts/2022-05-28-python-classes-part1/) that class variables are shared across all instances, while instance variables are unique to each object? Well, subclasses can override class variables too!
+
+```python
+class Pet:
+    kingdom = 'animal'
+
+class Bird(Pet):
+    kingdom = 'aves'      # Override the class variable
+    can_fly = True
+
+class Penguin(Bird):
+    can_fly = False       # Override it again
+
+generic_pet = Pet()
+sparrow = Bird()
+skipper = Penguin()
+
+print(generic_pet.kingdom, sparrow.kingdom, skipper.kingdom)
+print(sparrow.can_fly, skipper.can_fly)
+```
+
+    animal aves aves
+    True False
+
+Each subclass can customize these class-level attributes without touching the parent code. This is really powerful for setting default values that differ across subclasses.
+
+A word of caution though: if a class variable contains a **mutable** object (like a list or dictionary), modifying it from one instance will affect all instances that share it. When in doubt, use instance variables (defined in `__init__`) for per-object state.
+
+## Multiple inheritance and MRO
+
+Here's where things get really interesting. Python allows a class to inherit from **multiple parent classes** at the same time. Let's see this in action:
+
+```python
+class Flyer:
+    def move(self):
+        return 'I fly'
+
+class Swimmer:
+    def move(self):
+        return 'I swim'
+
+class Duck(Flyer, Swimmer):
+    pass
+
+donald = Duck()
+print(donald.move())
+```
+
+    I fly
+
+Wait, both `Flyer` and `Swimmer` have a `move()` method. Which one did `Duck` inherit? The answer is: the first parent listed, which is `Flyer`.
+
+But how does Python actually decide this? It uses something called the **Method Resolution Order (MRO)** — basically, the order in which Python searches for methods in the class hierarchy.
+
+We can inspect it:
+
+```python
+print(Duck.mro())
+```
+
+    [<class '__main__.Duck'>, <class '__main__.Flyer'>, <class '__main__.Swimmer'>, <class 'object'>]
+
+Python looks in `Duck` first, then `Flyer`, then `Swimmer`, and finally the base `object` class. This linearization ensures consistent and predictable behavior, even with complex inheritance hierarchies.
+
+## Conclusion
+
+In this final part of the series, we learned how to create subclasses, override and extend behavior with `super()`, work with class and instance variables in inheritance chains, and navigate multiple inheritance using Python's Method Resolution Order.
+
+While inheritance is powerful, it's not always the right tool:
+
+* **Prefer composition over inheritance** when you only need one or two methods from another class. Instead of subclassing, create an instance of that class as an attribute.
+* Use the **"is-a" vs "has-a"** test: A Dog *is a* Pet (inheritance), but a Car *has an* Engine (composition).
+* **Keep it simple**: Deep inheritance hierarchies (more than 2-3 levels) tend to become hard to understand and maintain.
+
+In the end, the goal is to write code that's easy to read and modify, not to show off how many inheritance tricks you know!
+
+You now have all the building blocks of object-oriented programming in Python: classes, instance and class variables, regular methods, class methods, static methods, and inheritance patterns!

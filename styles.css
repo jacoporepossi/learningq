@@ -1,39 +1,148 @@
-/* css styles */
+/* -----------------------------------------------------------------------------
+   Fonts
+   -------------------------------------------------------------------------- */
+
 /* Import Inter font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 /* Apply the font to the entire document */
 body {
-    font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
+
+/* -----------------------------------------------------------------------------
+   Navbar tweaks
+   -------------------------------------------------------------------------- */
 
 /* Navbar link hover effect */
 .navbar a:hover {
-color: orange;
+  color: #ff8902;
 }
 
-/* Add margin to the navbar tools section */
+/* Add margin to the navbar tools section (right side icons/tools) */
 .quarto-navbar-tools {
-margin-left: 45px;  /* Adjust value as needed */
+  margin-left: 45px; /* adjust as needed */
 }
+
+/* -----------------------------------------------------------------------------
+   About page layout helpers
+   -------------------------------------------------------------------------- */
 
 .about-contents {
-display: flex;
-align-items: center;    /* Centers vertically */
+  display: flex;
+  align-items: center; /* vertical centering */
 }
 
 /* Center the left column content */
 .about-entity {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-code {
-    color: #e74c3c; /* Text color inline code */
+/* -----------------------------------------------------------------------------
+   Inline code (e.g., `like this`)
+   -------------------------------------------------------------------------- */
+
+/*
+  Target inline code but NOT code inside <pre> blocks.
+  `:not(pre) > code` matches <code> that is a direct child of any element
+  except <pre>. This is a common pattern to style inline code only.
+*/
+:not(pre) > code {
+  color: #2c3e50;            /* accent text */
+  background-color: #d8dce0; /* light gray background */
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: pre-wrap;     /* preserve newlines, but allow wrapping */
+  overflow-wrap: anywhere;   /* allow breaking very long tokens */
+  word-break: break-word;    /* fallback for older browsers */
+}
+
+/* Dark mode inline code:
+   Quarto uses `body.quarto-dark` and/or `body[data-bs-theme="dark"]`.
+   Use both for robustness.
+*/
+body.quarto-dark :not(pre) > code,
+body[data-bs-theme="dark"] :not(pre) > code {
+  background-color: #5c5e5f;
+  color: #adcdec;
+}
+
+/* -----------------------------------------------------------------------------
+   Code blocks (Quarto fenced blocks + custom <pre class="code-block">)
+   -------------------------------------------------------------------------- */
+
+/* Shared tokens */
+:root {
+  --q-code-bg: #f5f5f5;
+  --q-code-border: #e0e0e0;
+  --q-code-fg: #212529;
+  --q-code-left-accent: #facc97;
+  --q-code-radius: 5px;
+  --q-code-pad-y: 0.9rem;
+  --q-code-pad-x: 1rem;
+}
+
+/* Dark mode tokens */
+body.quarto-dark,
+body[data-bs-theme="dark"] {
+  --q-code-bg: #2d2d2d;
+  --q-code-border: #3e3e3e;
+  --q-code-fg: #e9ecef;
+}
+
+/* 1) Quarto fenced code blocks: put the "frame" on the wrapper */
+div.sourceCode,
+div.code-with-copy {
+  background-color: var(--q-code-bg) !important;
+  border: 1px solid var(--q-code-border) !important;
+  border-left: 4px solid var(--q-code-left-accent) !important;
+  border-radius: var(--q-code-radius) !important;
+  padding: var(--q-code-pad-y) var(--q-code-pad-x) !important;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+
+/* Make the inner <pre> transparent so we don't get double backgrounds/padding */
+div.sourceCode > pre,
+div.code-with-copy > pre,
+pre.sourceCode {
+  background: transparent !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Apply wrapping behavior consistently (you already want wrapping) */
+div.sourceCode pre,
+div.code-with-copy pre,
+pre.code-block {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word; /* fallback */
+}
+
+/* 2) Custom HTML blocks: match Quarto's frame */
+pre.code-block {
+  background-color: var(--q-code-bg);
+  color: var(--q-code-fg);
+  border: 1px solid var(--q-code-border);
+  border-left: 4px solid var(--q-code-left-accent);
+  padding: var(--q-code-pad-y) var(--q-code-pad-x);
+  border-radius: var(--q-code-radius);
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+/* If you ever wrap content in <code> inside <pre class="code-block"> */
+pre.code-block > code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
 }
 
 .keywords {
-    opacity: 0; /* Hide keywords */
+    opacity: 0;
 }

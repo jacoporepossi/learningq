@@ -8,10 +8,10 @@
 
 <meta name="author" content="Jacopo Repossi">
 <meta name="dcterms.date" content="2022-05-28">
-<meta name="keywords" content="python classes, object oriented programming in python">
+<meta name="keywords" content="python classes, python <strong>init</strong> method, python class vs instance variables">
 <meta name="description" content="Dive into the fundamentals of Python classes with this introductory guide, covering essential concepts with examples.">
 
-<title>Object-oriented programming in Python: Classes - Part 1 – Home</title>
+<title>Object-oriented programming in Python: Classes - Part 1 – Learning Queue</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,14 +78,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4c7b890cc350be7067044af900615741.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-4c7b890cc350be7067044af900615741.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-98424c7849dbc4d865a4632733296acd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fc8f9f2a7b3ab62723041bc2d0330762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-98424c7849dbc4d865a4632733296acd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3ed211e4df987f4863ff88643348f296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c68dbb949a069cde9f8d686dce161da3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-3ed211e4df987f4863ff88643348f296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -181,10 +181,10 @@ background: #00000000;
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Object-oriented programming in Python: Classes - Part 1 – Home">
+<meta property="og:title" content="Object-oriented programming in Python: Classes - Part 1 – Learning Queue">
 <meta property="og:description" content="Dive into the fundamentals of Python classes with this introductory guide, covering essential concepts with examples.">
 <meta property="og:image" content="https://jacoporepossi.github.io/learningq/posts/2022-05-28-python-classes-part1/image.jpg">
-<meta property="og:site_name" content="Home">
+<meta property="og:site_name" content="Learning Queue">
 <link rel="canonical" href="https://jacoporepossi.github.io/learningq/posts/2022-05-28-python-classes-part1/">
 </head>
 
@@ -360,7 +360,7 @@ background: #00000000;
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Home</span>
+    <span class="navbar-title">Learning Queue</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -435,7 +435,7 @@ background: #00000000;
   <div>
     <div class="keywords">
       <div class="block-title">Keywords</div>
-      <p>python classes, object oriented programming in python</p>
+      <p>python classes, python <strong>init</strong> method, python class vs instance variables</p>
     </div>
   </div>
   
@@ -579,7 +579,7 @@ My name is Fido and I am 1 yrs old. I live in Milan!</code></pre>
 <pre><code>{'name': 'Bob', 'age': 3}
 {'name': 'Fido', 'age': 1, 'city_address': 'Milan'}
 {'__module__': '__main__', 'city_address': 'Rome', '__init__': &lt;function Pet.__init__ at 0x000001AE49139F70&gt;, 'get_id': &lt;function Pet.get_id at 0x000001AE491393A0&gt;, '__dict__': &lt;attribute '__dict__' of 'Pet' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Pet' objects&gt;, '__doc__': None}</code></pre>
-<p>All the above is happening because the we defined the get_id method using <code>self.city_address</code> &gt; <code>print('My name is {} and I am {} yrs old. I live in {}!'.format(self.name, self.age, self.city_address))</code></p>
+<p>All the above is happening because the we defined the <code>get_id</code> method using <code>self.city_address</code>.</p>
 <p>Should it be always like that? What about <code>Pet.city_address</code>?<br>
 As we saw, it is convenient to have the flexibility of being able to change the city in which the Pet lives, so it makes sense to leave <code>self</code> in the method.</p>
 <p>Let’s see what would happen if we changed to <code>Pet.city_address</code></p>
