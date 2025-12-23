@@ -9,6 +9,11 @@ description: |
 keywords: [prompt hacking, how to trick llm, chatgpt prompt hacking, prompt engineering, AI red teaming, LLM jailbreak, prompt injection, system prompt leakage]
 ---
 
+#### Update (December 2025)
+
+The landscape of AI security is moving fast. Since this post, I've published a deep dive on **[Indirect Prompt Injection](https://jacoporepossi.github.io/learningq/posts/2025-12-01-indirect-prompt-injection/)** and a walkthrough of the **[CBRNE Prompt Hacking Competition](https://jacoporepossi.github.io/learningq/posts/2025-06-22-prompt-hacking-cbrne/)**. Check them out for the latest attack vectors and insights.
+
+
 ## Introduction
 
 After the release of [ChatGPT in November 2022](https://openai.com/blog/chatgpt), we all became more familiar with the concept of "prompts", which are the initial instructions or input given to an AI system to generate a desired response or output. <br>

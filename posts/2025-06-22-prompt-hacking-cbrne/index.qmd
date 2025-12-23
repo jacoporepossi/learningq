@@ -21,7 +21,9 @@ In the competition, participants were presented with **15 different challenges**
 
 Here's an example:
 
-<img src="frontend.png" alt="Competition frontend screenshot" style="width:100%;max-width:100%;">
+<a href="frontend.png" target="_blank" rel="noopener">
+  <img src="frontend.png" alt="Competition frontend screenshot" style="width:100%;max-width:100%;">
+</a>
 
 Each submission was reviewed by a [panel of three AI judges](https://www.hackaprompt.com/track/cbrne#judging), who evaluated it based on **three main criteria**: intent coverage, level of details and accessibility.
 
